@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maaz Khan Baloch - Software Engineer</title>
+    <title>Mayantha Udayanga Portfolio</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Inter Font from Google Fonts -->
@@ -13,63 +13,123 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #1a0033; /* Dark purple background */
-            color: #e0e0e0; /* Light gray text */
-            overflow-x: hidden; /* Prevent horizontal scrollbar */
+            background-color: #0a0a23; /* Deep dark blue */
+            color: #e0e0e0;
+            overflow-x: hidden;
         }
         .gradient-text {
-            background: linear-gradient(90deg, #a855f7, #c084fc);
+            background: linear-gradient(90deg, #a855f7, #0ea5e9);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .card-gradient-border {
-            border-image: linear-gradient(to right, #a855f7, #c084fc) 1;
+            border-image: linear-gradient(to right, #a855f7, #0ea5e9) 1;
             border-width: 2px;
             border-style: solid;
         }
         .glowing-icon {
-            filter: drop-shadow(0 0 10px #a855f7) drop-shadow(0 0 20px #c084fc);
+            filter: drop-shadow(0 0 10px #a855f7) drop-shadow(0 0 20px #0ea5e9);
         }
         .project-card-image {
-            background-color: #330066; /* Darker purple for image placeholder */
-            border: 1px solid #663399;
+            background-color: #181830; /* Darker blue for image placeholder */
+            border: 1px solid #2a0055;
         }
         /* Liquid Glass Effect for Work Experience Cards */
         .glass-card {
-            background-color: rgba(42, 0, 85, 0.3); /* Semi-transparent background */
+            background-color: rgba(20, 20, 40, 0.5); /* Dark glass */
             backdrop-filter: blur(15px); /* Apply blur to content behind */
             -webkit-backdrop-filter: blur(15px); /* For Safari support */
-            border: 1px solid rgba(168, 85, 247, 0.5); /* Lighter, semi-transparent border */
+            border: 1px solid rgba(168, 85, 247, 0.3); /* Lighter, semi-transparent border */
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Subtle shadow */
         }
-
-        /* Canvas for Spidy Web Effect */
-        #spidyWebCanvas {
+        /* Animated Gradient Background */
+        #animated-bg {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Ensure it's behind other content */
-            pointer-events: none; /* Allow mouse events to pass through to elements below */
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            background: linear-gradient(120deg, #181830, #2a0055, #0ea5e9, #181830);
+            background-size: 400% 400%;
+            animation: gradientMove 16s ease-in-out infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes gradientMove {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        .text-purple-400, .text-purple-300 {
+            color: #a855f7 !important;
+        }
+        .bg-purple-700 {
+            background-color: #2a0055 !important;
+        }
+        .border-purple-700 {
+            border-color: #a855f7 !important;
+        }
+        .bg-[#2a0055] {
+            background-color: #181830 !important;
+        }
+        .text-gray-400 {
+            color: #b3b3c6 !important;
+        }
+        .text-gray-300 {
+            color: #e0e0e0 !important;
+        }
+        .text-gray-500 {
+            color: #b3b3c6 !important;
+        }
+        .text-gray-600 {
+            color: #8888aa !important;
+        }
+        .text-white {
+            color: #fff !important;
+        }
+        .hover\:bg-purple-900:hover {
+            background-color: #181830 !important;
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
-
-    <!-- Canvas for Spidy Web Effect -->
-    <canvas id="spidyWebCanvas"></canvas>
+    <!-- Animated Gradient Background -->
+    <div id="animated-bg"></div>
 
     <!-- Header -->
-    <header class="w-full py-4 px-8 md:px-16 lg:px-24 flex justify-between items-center relative z-10">
-        <div class="text-2xl font-bold gradient-text rounded-lg">M</div>
-        <nav>
-            <ul class="flex space-x-6">
-                <li><a href="#" class="text-gray-300 hover:text-white transition duration-300 rounded-lg">Home</a></li>
-                <li><a href="#" class="text-gray-300 hover:text-white transition duration-300 rounded-lg">About</a></li>
-                <li><a href="#" class="text-gray-300 hover:text-white transition duration-300 rounded-lg">Lab</a></li>
+    <header class="w-full py-4 px-8 md:px-16 lg:px-24 flex flex-col md:flex-row justify-between items-center relative z-10">
+        <div class="text-2xl font-bold gradient-text rounded-lg mb-4 md:mb-0">M</div>
+        <nav class="flex-1">
+            <ul class="flex justify-center space-x-6">
+                <li>
+                    <div class="glass-card px-4 py-2 rounded-lg transition duration-300">
+                        <a href="#" class="text-gray-300 hover:text-white">Home</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="glass-card px-4 py-2 rounded-lg transition duration-300">
+                        <a href="#" class="text-gray-300 hover:text-white">About</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="glass-card px-4 py-2 rounded-lg transition duration-300">
+                        <a href="#" class="text-gray-300 hover:text-white">Lab</a>
+                    </div>
+                </li>
             </ul>
         </nav>
+        <div class="flex items-center space-x-4 mt-4 md:mt-0">
+            <!-- Dark/Light Mode Toggle Button -->
+            <button id="themeToggle" class="px-4 py-2 rounded-lg glass-card backdrop-blur-lg border border-purple-400 text-white hover:bg-purple-900 transition duration-300 flex items-center justify-center text-2xl">
+                <i id="themeIcon" class="fas fa-sun"></i>
+            </button>
+            <!-- Download CV Button -->
+            <a href="Mayantha_Udayanga_CV.pdf" download class="px-4 py-2 rounded-lg glass-card backdrop-blur-lg border border-purple-400 text-white hover:bg-purple-900 transition duration-300 flex items-center justify-center text-lg font-semibold">
+                <i class="fas fa-download mr-2"></i> Download CV
+            </a>
+        </div>
     </header>
 
     <main class="flex-grow relative z-10">
@@ -78,11 +138,11 @@
             <!-- Profile Avatar with glowing effect -->
             <div class="relative mb-8">
                 <!-- Updated avatar image source -->
-                <img src="https://i.ibb.co/jCpjgKL/image-86ab26.png" alt="Maaz Khan Baloch Avatar" class="rounded-full border-4 border-purple-600 shadow-lg glowing-icon w-32 h-32 object-cover">
+                <img src="https://i.ibb.co/jCpjgKL/image-86ab26.png" alt="Mayantha Udayanga Avatar" class="rounded-full border-4 border-purple-600 shadow-lg glowing-icon w-32 h-32 object-cover">
                 <div class="absolute inset-0 rounded-full bg-purple-500 opacity-20 blur-xl"></div>
             </div>
 
-            <p class="text-purple-400 text-sm mb-2 rounded-lg">Hello, I'm Maaz Khan Baloch</p>
+            <p class="text-purple-400 text-sm mb-2 rounded-lg">Hello, I'm Mayantha Udayanga</p>
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight">
                 Judges a book by its <span class="gradient-text">COVER!</span>
             </h1>
@@ -218,133 +278,43 @@
                 You can connect with me through the following channels:
             </p>
             <div class="flex justify-center space-x-6 text-2xl">
-                <a href="#" class="text-gray-300 hover:text-white transition duration-300 rounded-lg"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="text-gray-300 hover:text-white transition duration-300 rounded-lg"><i class="fab fa-github"></i></a>
-                <a href="#" class="text-gray-300 hover:text-white transition duration-300 rounded-lg"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/mayanthaudayanga/" target="_blank" rel="noopener" class="text-gray-300 hover:text-white transition duration-300 rounded-lg">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/Mayanthaz" target="_blank" rel="noopener" class="text-gray-300 hover:text-white transition duration-300 rounded-lg">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:Bimsaramaya1@gmail.com" target="_blank" rel="noopener" class="text-gray-300 hover:text-white transition duration-300 rounded-lg">
+                    <i class="fas fa-envelope"></i>
+                </a>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
     <footer class="w-full py-8 text-center text-gray-500 text-sm rounded-lg relative z-10">
-        &copy; 2024 Maaz Khan Baloch. All rights reserved.
+        &copy; 2025 Mayantha Udayanga All rights reserved.
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const canvas = document.getElementById('spidyWebCanvas');
-            const ctx = canvas.getContext('2d');
-            let particles = [];
-            let mouse = { x: 0, y: 0, radius: 100 }; // Mouse influence radius
+document.addEventListener('DOMContentLoaded', () => {
+    // Theme toggle logic with icon
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const body = document.body;
 
-            // Set canvas dimensions
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-
-            // Particle constructor
-            class Particle {
-                constructor(x, y) {
-                    this.x = x;
-                    this.y = y;
-                    this.size = Math.random() * 2 + 1; // Random size between 1 and 3
-                    this.baseX = this.x;
-                    this.baseY = this.y;
-                    this.density = (Math.random() * 30) + 1;
-                    this.color = 'rgba(168, 85, 247, 0.7)'; // Purple color with some transparency
-                }
-
-                draw() {
-                    ctx.fillStyle = this.color;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.closePath();
-                    ctx.fill();
-                }
-
-                update() {
-                    // Calculate distance from mouse
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-
-                    // Move particle towards mouse if within radius
-                    if (distance < mouse.radius) {
-                        let forceDirectionX = dx / distance;
-                        let forceDirectionY = dy / distance;
-                        let maxDistance = mouse.radius;
-                        let force = (maxDistance - distance) / maxDistance;
-                        let directionX = forceDirectionX * force * this.density;
-                        let directionY = forceDirectionY * force * this.density;
-
-                        this.x += directionX;
-                        this.y += directionY;
-                    } else {
-                        // Return to base position with some damping
-                        if (this.x !== this.baseX) {
-                            let dx = this.x - this.baseX;
-                            this.x -= dx / 10;
-                        }
-                        if (this.y !== this.baseY) {
-                            let dy = this.y - this.baseY;
-                            this.y -= dy / 10;
-                        }
-                    }
-                }
-            }
-
-            // Initialize particles randomly across the screen
-            function init() {
-                particles = [];
-                for (let i = 0; i < (canvas.width * canvas.height) / 9000; i++) {
-                    let x = Math.random() * canvas.width;
-                    let y = Math.random() * canvas.height;
-                    particles.push(new Particle(x, y));
-                }
-            }
-
-            // Handle mouse movement
-            canvas.addEventListener('mousemove', (event) => {
-                mouse.x = event.x;
-                mouse.y = event.y;
-            });
-
-            // Animation loop
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
-
-                for (let i = 0; i < particles.length; i++) {
-                    particles[i].update();
-                    particles[i].draw();
-                }
-
-                // Draw lines between nearby particles
-                for (let a = 0; a < particles.length; a++) {
-                    for (let b = a; b < particles.length; b++) {
-                        let dx = particles[a].x - particles[b].x;
-                        let dy = particles[a].y - particles[b].y;
-                        let distance = Math.sqrt(dx * dx + dy * dy);
-
-                        if (distance < 120) { // Max distance for drawing a line
-                            ctx.strokeStyle = `rgba(168, 85, 247, ${1 - (distance / 120)})`; // Fade lines based on distance
-                            ctx.lineWidth = 1;
-                            ctx.beginPath();
-                            ctx.moveTo(particles[a].x, particles[a].y);
-                            ctx.lineTo(particles[b].x, particles[b].y);
-                            ctx.stroke();
-                        }
-                    }
-                }
-                requestAnimationFrame(animate); // Loop animation
-            }
-
-            // Start the animation
-            init();
-            animate();
-        });
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('light-mode');
+        if (body.classList.contains('light-mode')) {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        } else {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+    });
+});
     </script>
 </body>
+
 </html>
