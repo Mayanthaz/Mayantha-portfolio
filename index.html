@@ -9,7 +9,7 @@
     <!-- Inter Font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -18,7 +18,7 @@
             overflow-x: hidden;
         }
         .gradient-text {
-            background: linear-gradient(90deg, #a855f7, #0ea5e9);
+            background: linear-gradient(90deg, #a855
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -93,8 +93,8 @@
             background-color: #181830 !important;
         }
     </style>
-
-
+    <!-- Add this in your <head> section if not already present -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body class="min-h-screen flex flex-col">
     <!-- Animated Gradient Background -->
@@ -104,7 +104,7 @@
     <header class="w-full py-4 px-8 md:px-16 lg:px-24 flex justify-end items-center relative z-10">
         <!-- Download CV Button aligned to right -->
         <a href="Mayantha_Udayanga_CV.pdf" download class="px-4 py-2 rounded-lg glass-card backdrop-blur-lg border border-purple-400 text-white hover:bg-purple-900 transition duration-300 flex items-center justify-center text-lg font-semibold">
-            <i class="fas fa-download mr-2"></i> Download CV
+            <i class="fas fa-download mr-2"></i> Download
         </a>
     </header>
 
@@ -271,35 +271,15 @@
                 </a>
             </div>
             <!-- Comment Box -->
-            <form class="max-w-xl mx-auto mt-8 flex flex-col items-center" action="mailto:" method="POST" enctype="text/plain">
-                <textarea name="comment" rows="4" placeholder="Write your comment here..." class="w-full p-3 rounded-lg glass-card text-gray-300 bg-transparent border border-purple-700 mb-4"></textarea>
-                <button type="submit" class="px-6 py-2 rounded-lg glass-card backdrop-blur-lg border border-purple-400 text-white hover:bg-purple-900 transition duration-300 font-semibold flex items-center justify-center">
-
-
-
+            <form id="commentForm" action="https://formspree.io/f/xrblayvw" method="POST" class="max-w-xl mx-auto mt-8 flex flex-col items-center">
+                <textarea id="commentBox" name="comment" rows="4" placeholder="Write your comment here..." class="w-full p-3 rounded-lg glass-card text-gray-300 bg-transparent border border-purple-700 mb-4"></textarea>
+                <div class="mb-4" id="recaptcha-container" style="display:none;">
+                    <div class="g-recaptcha" data-sitekey="6LdPKZkrAAAAAPP7O5pQUmVepD2Zlr3Jp-pJqxhH"></div>
+                </div>
+                <button type="submit" id="sendBtn" class="px-6 py-2 rounded-lg glass-card backdrop-blur-lg border border-purple-400 text-white hover:bg-purple-900 transition duration-300 font-semibold flex items-center justify-center">
                     <i class="fas fa-paper-plane mr-2"></i> Send
                 </button>
             </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </section>
     </main>
 
@@ -323,6 +303,27 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             themeIcon.classList.remove('fa-moon');
             themeIcon.classList.add('fa-sun');
+        }
+    });
+
+    const commentForm = document.getElementById('commentForm');
+    const commentBox = document.getElementById('commentBox');
+    const recaptchaContainer = document.getElementById('recaptcha-container');
+    const sendBtn = document.getElementById('sendBtn');
+
+    sendBtn.addEventListener('click', function(e) {
+        const comment = commentBox.value.trim();
+        if (comment === "") {
+            recaptchaContainer.style.display = "none";
+            alert("Please enter a comment before sending.");
+            e.preventDefault();
+        } else {
+            recaptchaContainer.style.display = "block";
+            // Check if reCAPTCHA is completed
+            if (typeof grecaptcha !== "undefined" && grecaptcha.getResponse() === "") {
+                alert("Please complete the reCAPTCHA before sending.");
+                e.preventDefault();
+            }
         }
     });
 });
