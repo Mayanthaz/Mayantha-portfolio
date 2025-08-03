@@ -93,6 +93,8 @@
             background-color: #181830 !important;
         }
     </style>
+    <!-- Add this in your <head> section to load Google reCAPTCHA v2 -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body class="min-h-screen flex flex-col">
     <!-- Animated Gradient Background -->
@@ -269,12 +271,35 @@
                 </a>
             </div>
             <!-- Comment Box -->
-            <form class="max-w-xl mx-auto mt-8 flex flex-col items-center" action="mailto:" method="POST" enctype="text/plain">
-                <textarea name="comment" rows="4" placeholder="Write your comment here..." class="w-full p-3 rounded-lg glass-card text-gray-300 bg-transparent border border-purple-700 mb-4"></textarea>
-                <button type="submit" class="px-6 py-2 rounded-lg glass-card backdrop-blur-lg border border-purple-400 text-white hover:bg-purple-900 transition duration-300 font-semibold flex items-center justify-center">
+            <form id="commentForm" class="max-w-xl mx-auto mt-8 flex flex-col items-center" action="mailto:" method="POST" enctype="text/plain">
+                <textarea id="commentBox" name="comment" rows="4" placeholder="Write your comment here..." class="w-full p-3 rounded-lg glass-card text-gray-300 bg-transparent border border-purple-700 mb-4"></textarea>
+                <div class="mb-4" id="recaptcha-container" style="display:none;">
+                    <div class="g-recaptcha" data-sitekey="6LdPKZkrAAAAAPP7O5pQUmVepD2Zlr3Jp-pJqxhH"></div>
+                </div>
+                <button type="submit" id="sendBtn" class="px-6 py-2 rounded-lg glass-card backdrop-blur-lg border border-purple-400 text-white hover:bg-purple-900 transition duration-300 font-semibold flex items-center justify-center">
                     <i class="fas fa-paper-plane mr-2"></i> Send
                 </button>
             </form>
+
+            <script>
+            // Show reCAPTCHA only if comment box is not empty
+            document.getElementById('sendBtn').addEventListener('click', function(e) {
+                var comment = document.getElementById('commentBox').value.trim();
+                var recaptchaContainer = document.getElementById('recaptcha-container');
+                if (comment === "") {
+                    recaptchaContainer.style.display = "none";
+                    alert("Please enter a comment before sending.");
+                    e.preventDefault();
+                } else {
+                    recaptchaContainer.style.display = "block";
+                    // Prevent form submission until reCAPTCHA is completed
+                    if (grecaptcha.getResponse() === "") {
+                        alert("Please complete the reCAPTCHA before sending.");
+                        e.preventDefault();
+                    }
+                }
+            });
+            </script>
         </section>
     </main>
 
