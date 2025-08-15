@@ -351,13 +351,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const firebaseConfig = {
         apiKey: "AIzaSyC9HHJYm_w-wdiBMybxwPuuJGybz0SzR1s",
         authDomain: "mayanthaportfolio.firebaseapp.com",
+        // Fix this URL - it should be your Realtime Database URL
         databaseURL: "https://console.firebase.google.com/u/0/project/mayanthaportfolio/database",
         projectId: "mayanthaportfolio",
-        storageBucket: "mayanthaportfolio.firebasestorage.app",
+        storageBucket: "mayanthaportfolio.appspot.com",
         messagingSenderId: "1038679219568",
         appId: "1:1038679219568:web:9cfe6968fdae2910f383b5"
     };
 
+    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
@@ -365,11 +367,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const presenceRef = db.ref('presence');
     const myConnectionRef = presenceRef.push();
 
+    // Monitor connection state
     db.ref('.info/connected').on('value', (snapshot) => {
         if (snapshot.val()) {
-            // When user connects, add them to presence list
+            // When user connects
             myConnectionRef.set(true);
-            // Remove them when they disconnect
+            // Remove when user disconnects
             myConnectionRef.onDisconnect().remove();
         }
     });
@@ -383,3 +386,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
