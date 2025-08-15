@@ -291,6 +291,12 @@
     </button>
 </form>
 
+<!-- Visitor Counter -->
+<div id="visitor-counter" class="mt-6 text-center text-lg font-semibold text-purple-400 glass-card px-4 py-2 rounded-lg max-w-xs mx-auto">
+    Visitors: <span id="visitor-count">0</span>
+</div>
+</form>
+
 <script>
     // Show reCAPTCHA only if comment box is not empty
     document.getElementById('sendBtn').addEventListener('click', function(e) {
@@ -309,6 +315,19 @@
             }
         }
     });
+
+    // Visitor Counter Logic
+    function updateVisitorCounter() {
+        let count = localStorage.getItem('visitorCount');
+        if (!count) {
+            count = 1;
+        } else {
+            count = parseInt(count) + 1;
+        }
+        localStorage.setItem('visitorCount', count);
+        document.getElementById('visitor-count').textContent = count;
+    }
+    updateVisitorCounter();
 </script>
         </section>
     </main>
