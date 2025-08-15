@@ -291,11 +291,11 @@
     </button>
 </form>
 
-<!-- Visitor Counter -->
+<!-- Visitor Counter (already present) -->
 <div id="visitor-counter" class="mt-6 text-center text-lg font-semibold text-purple-400 glass-card px-4 py-2 rounded-lg max-w-xs mx-auto">
-    Visitors: <span id="visitor-count">0</span>
+    Online viewers: <span id="visitor-count">0</span>
+    <div class="text-sm text-gray-400 mt-1">Total visits: <span id="total-visits">0</span></div>
 </div>
-</form>
 
 <script>
     // Show reCAPTCHA only if comment box is not empty
@@ -356,6 +356,66 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
     </script>
+
+    <!-- Firebase realtime presence script: paste before </body> -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script>
+  // TODO: replace with your Firebase project config
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "SENDER_ID",
+    appId: "APP_ID"
+  };
+
+  // init
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  // Presence: create a node for this connection and remove on disconnect
+  const presenceRef = db.ref('presence');
+  const myConnectionRef = presenceRef.push(); // unique child for this visitor
+
+  // Track connection state
+  const connectedRef = db.ref('.info/connected');
+  connectedRef.on('value', snapshot => {
+    if (snapshot.val() === true) {
+      // mark presence and ensure removal on disconnect
+      myConnectionRef.set({ ts: firebase.database.ServerValue.TIMESTAMP });
+      myConnectionRef.onDisconnect().remove();
+    }
+  });
+
+  // Update online viewer count in realtime
+  presenceRef.on('value', snapshot => {
+    const online = snapshot.numChildren();
+    const el = document.getElementById('visitor-count');
+    if (el) el.textContent = online;
+  });
+
+  // Optional: total visits (increment on page load once)
+  const totalRef = db.ref('stats/totalVisits');
+  // increment safely with transaction so multiple concurrent loads are handled
+  totalRef.transaction(current => (current || 0) + 1)
+    .then(() => {
+      // read and display the updated total
+      totalRef.once('value').then(snap => {
+        const totalEl = document.getElementById('total-visits');
+        if (totalEl) totalEl.textContent = snap.val() || 0;
+      });
+    })
+    .catch(err => console.error('Total visits transaction error:', err));
+
+  // Update displayed total in realtime as well (keeps it synced)
+  totalRef.on('value', snap => {
+    const totalEl = document.getElementById('total-visits');
+    if (totalEl) totalEl.textContent = snap.val() || 0;
+  });
+</script>
 </body>
 
 </html>
