@@ -291,10 +291,9 @@
     </button>
 </form>
 
-<!-- Visitor Counter (already present) -->
+<!-- Visitor Counter (updated) -->
 <div id="visitor-counter" class="mt-6 text-center text-lg font-semibold text-purple-400 glass-card px-4 py-2 rounded-lg max-w-xs mx-auto">
-    Online viewers: <span id="visitor-count">0</span>
-    <div class="text-sm text-gray-400 mt-1">Total visits: <span id="total-visits">0</span></div>
+    Live Viewers: <span id="visitor-count">0</span>
 </div>
 
 <script>
@@ -315,19 +314,6 @@
             }
         }
     });
-
-    // Visitor Counter Logic
-    function updateVisitorCounter() {
-        let count = localStorage.getItem('visitorCount');
-        if (!count) {
-            count = 1;
-        } else {
-            count = parseInt(count) + 1;
-        }
-        localStorage.setItem('visitorCount', count);
-        document.getElementById('visitor-count').textContent = count;
-    }
-    updateVisitorCounter();
 </script>
         </section>
     </main>
@@ -361,60 +347,38 @@ document.addEventListener('DOMContentLoaded', () => {
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
-  // TODO: replace with your Firebase project config
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT.firebaseio.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT.appspot.com",
-    messagingSenderId: "SENDER_ID",
-    appId: "APP_ID"
-  };
+    // Initialize Firebase with your config
+    const firebaseConfig = {
+        apiKey: "AIzaSyC9HHJYm_w-wdiBMybxwPuuJGybz0SzR1s",
+        authDomain: "mayanthaportfolio.firebaseapp.com",
+        databaseURL: "https://console.firebase.google.com/u/0/project/mayanthaportfolio/database",
+        projectId: "mayanthaportfolio",
+        storageBucket: "mayanthaportfolio.firebasestorage.app",
+        messagingSenderId: "1038679219568",
+        appId: "1:1038679219568:web:9cfe6968fdae2910f383b5"
+    };
 
-  // init
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-  // Presence: create a node for this connection and remove on disconnect
-  const presenceRef = db.ref('presence');
-  const myConnectionRef = presenceRef.push(); // unique child for this visitor
+    // Handle presence
+    const presenceRef = db.ref('presence');
+    const myConnectionRef = presenceRef.push();
 
-  // Track connection state
-  const connectedRef = db.ref('.info/connected');
-  connectedRef.on('value', snapshot => {
-    if (snapshot.val() === true) {
-      // mark presence and ensure removal on disconnect
-      myConnectionRef.set({ ts: firebase.database.ServerValue.TIMESTAMP });
-      myConnectionRef.onDisconnect().remove();
-    }
-  });
+    db.ref('.info/connected').on('value', (snapshot) => {
+        if (snapshot.val()) {
+            // When user connects, add them to presence list
+            myConnectionRef.set(true);
+            // Remove them when they disconnect
+            myConnectionRef.onDisconnect().remove();
+        }
+    });
 
-  // Update online viewer count in realtime
-  presenceRef.on('value', snapshot => {
-    const online = snapshot.numChildren();
-    const el = document.getElementById('visitor-count');
-    if (el) el.textContent = online;
-  });
-
-  // Optional: total visits (increment on page load once)
-  const totalRef = db.ref('stats/totalVisits');
-  // increment safely with transaction so multiple concurrent loads are handled
-  totalRef.transaction(current => (current || 0) + 1)
-    .then(() => {
-      // read and display the updated total
-      totalRef.once('value').then(snap => {
-        const totalEl = document.getElementById('total-visits');
-        if (totalEl) totalEl.textContent = snap.val() || 0;
-      });
-    })
-    .catch(err => console.error('Total visits transaction error:', err));
-
-  // Update displayed total in realtime as well (keeps it synced)
-  totalRef.on('value', snap => {
-    const totalEl = document.getElementById('total-visits');
-    if (totalEl) totalEl.textContent = snap.val() || 0;
-  });
+    // Update viewer count in realtime
+    presenceRef.on('value', (snapshot) => {
+        const viewers = snapshot.numChildren();
+        document.getElementById('visitor-count').textContent = viewers;
+    });
 </script>
 </body>
 
