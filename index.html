@@ -368,8 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const firebaseConfig = {
         apiKey: "AIzaSyC9HHJYm_w-wdiBMybxwPuuJGybz0SzR1s",
         authDomain: "mayanthaportfolio.firebaseapp.com",
-        // Fixed database URL
-        databaseURL: "https://mayanthaportfolio-default-rtdb.firebaseio.com",
+        databaseURL: "https://mayanthaportfolio-default-rtdb.firebaseio.com/", // Updated URL
         projectId: "mayanthaportfolio",
         storageBucket: "mayanthaportfolio.appspot.com",
         messagingSenderId: "1038679219568",
@@ -387,32 +386,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const presenceRef = db.ref('presence');
     const myConnectionRef = presenceRef.child(sessionId);
 
-    // Monitor connection state
+    // Monitor connection state with error handling
     db.ref('.info/connected').on('value', (snapshot) => {
         if (snapshot.val()) {
             // When user connects
             myConnectionRef.set({
                 timestamp: firebase.database.ServerValue.TIMESTAMP,
                 online: true
-            });
+            }).catch(error => console.error('Error setting presence:', error));
             
             // Remove when user disconnects
-            myConnectionRef.onDisconnect().remove();
+            myConnectionRef.onDisconnect().remove()
+                .catch(error => console.error('Error setting disconnect:', error));
         }
-    });
+    }, (error) => console.error('Error monitoring connection:', error));
 
-    // Update viewer count in realtime
+    // Update viewer count in realtime with error handling
     presenceRef.on('value', (snapshot) => {
-        const viewers = snapshot.numChildren();
-        const counterElement = document.getElementById('visitor-count');
-        counterElement.textContent = viewers;
-        
-        // Add animation effect when count changes
-        counterElement.classList.add('scale-110');
-        setTimeout(() => {
-            counterElement.classList.remove('scale-110');
-        }, 200);
-    });
+        try {
+            const viewers = snapshot.numChildren();
+            const counterElement = document.getElementById('visitor-count');
+            if (counterElement) {
+                counterElement.textContent = viewers;
+                
+                // Add animation effect when count changes
+                counterElement.classList.add('scale-110');
+                setTimeout(() => {
+                    counterElement.classList.remove('scale-110');
+                }, 200);
+            }
+        } catch (error) {
+            console.error('Error updating viewer count:', error);
+        }
+    }, (error) => console.error('Error monitoring presence:', error));
 </script>
 </body>
 
