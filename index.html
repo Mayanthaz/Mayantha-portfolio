@@ -25,9 +25,17 @@
             overflow-x: hidden;
         }
         .gradient-text {
-            background: linear-gradient(90deg, #a855f7, #0ea5e9);
+            background: linear-gradient(120deg, #a855f7, #0ea5e9, #a855f7);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+        
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
         }
         .card-gradient-border {
             border-image: linear-gradient(to right, #a855f7, #0ea5e9) 1;
@@ -115,6 +123,131 @@
     .social-icon {
         cursor: pointer;
     }
+    /* Animations */
+    .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease-out;
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Updated avatar styles */
+    .avatar-image {
+        object-position: center;
+        filter: contrast(1.1) saturate(1.2);
+        transition: all 0.4s ease;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .avatar-image:hover {
+        transform: scale(1.02);
+        border-color: rgba(168, 85, 247, 0.8);
+        box-shadow: 
+            0 0 30px rgba(168, 85, 247, 0.3),
+            0 0 60px rgba(14, 165, 233, 0.2);
+    }
+
+    /* Enhanced dark glow effect */
+    .avatar-container {
+        position: relative;
+        isolation: isolate;
+    }
+
+    .avatar-container::after {
+        content: '';
+        position: absolute;
+        inset: -20px;
+        background: radial-gradient(
+            circle at center,
+            rgba(88, 28, 135, 0.3),
+            rgba(30, 58, 138, 0.1)
+        );
+        z-index: 1;
+        filter: blur(15px);
+    }
+
+    /* Enhanced image hover effect */
+    .image-container:hover::after {
+        opacity: 0.7;
+    }
+    
+    /* Updated glass card effect for skills */
+    .glass-card {
+        background: rgba(88, 28, 135, 0.1);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(168, 85, 247, 0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .glass-card:hover {
+        background: rgba(88, 28, 135, 0.2);
+        transform: translateY(-2px);
+        border-color: rgba(168, 85, 247, 0.4);
+    }
+
+    .badge-container {
+        position: relative;
+        padding-top: 100%; /* Creates a square aspect ratio */
+    }
+    
+    .badge-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5rem;
+    }
+    
+    .glass-card:hover {
+        box-shadow: 0 0 25px rgba(168, 85, 247, 0.2);
+        transform: translateY(-5px);
+    }
+
+    /* Updated badge container styles */
+    .glass-card [data-iframe-width] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 270px;
+    }
+    
+    .glass-card iframe {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto !important;
+        height: auto !important;
+    }
+
+    /* Add to your existing style section */
+.typewriter {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #a855f7;
+    animation: 
+        typing 3.5s steps(30, end),
+        blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #a855f7 }
+}
     </style>
     <!-- Add this in your <head> section to load Google reCAPTCHA v2 -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -133,141 +266,257 @@
 
     <main class="flex-grow relative z-10">
         <!-- Hero Section -->
-        <section class="relative flex flex-col items-center justify-center text-center py-16 px-4 md:px-8 lg:px-16">
-            <!-- Profile Avatar with glowing effect -->
-            <div class="relative mb-8">
-                <!-- Updated avatar image source -->
-                <img src="https://i.ibb.co/jCpjgKL/image-86ab26.png" alt="Mayantha Udayanga Avatar" class="rounded-full border-4 border-purple-600 shadow-lg glowing-icon w-32 h-32 object-cover">
-                <div class="absolute inset-0 rounded-full bg-purple-500 opacity-20 blur-xl"></div>
-            </div>
-
-            <p class="text-purple-400 text-sm mb-2 rounded-lg">Hello, I'm Mayantha Udayanga</p>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight">
-                Judges a book by its <span class="gradient-text">COVER!</span>
-            </h1>
-            <p class="text-xl md:text-2xl lg:text-3xl font-medium mb-6 rounded-lg">I'm a Software Engineer!</p>
-            <p class="max-w-3xl text-gray-400 text-base md:text-lg leading-relaxed rounded-lg">
-                A well-weight UI/UX designer, functioning in the industry for 2+ years now.
-                I make meaningful and delightful digital products that create an equilibrium
-                between user needs and business goals.
-            </p>
-        </section>
-
-        <!-- Work Experience Section -->
-        <section class="py-16 px-4 md:px-8 lg:px-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 rounded-lg">Work Experience</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                <!-- Experience Card 1 -->
-                <div class="glass-card p-6 rounded-xl shadow-lg flex flex-col items-start">
-                    <div class="bg-purple-700 p-3 rounded-full mb-4">
-                        <i class="fas fa-mobile-alt text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2 rounded-lg">Cill on the Mobile</h3>
-                    <p class="text-purple-300 text-sm mb-4 rounded-lg">UI/UX Designer . 2023-Present</p>
-                    <p class="text-gray-400 text-sm leading-relaxed rounded-lg">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                </div>
-                <!-- Experience Card 2 -->
-                <div class="glass-card p-6 rounded-xl shadow-lg flex flex-col items-start">
-                    <div class="bg-purple-700 p-3 rounded-full mb-4">
-                        <i class="fas fa-paint-brush text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2 rounded-lg">Cill on the Mobile</h3>
-                    <p class="text-purple-300 text-sm mb-4 rounded-lg">UI/UX Designer . 2022-2023</p>
-                    <p class="text-gray-400 text-sm leading-relaxed rounded-lg">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                </div>
-                <!-- Experience Card 3 -->
-                <div class="glass-card p-6 rounded-xl shadow-lg flex flex-col items-start">
-                    <div class="bg-purple-700 p-3 rounded-full mb-4">
-                        <i class="fas fa-code text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2 rounded-lg">Cill on the Mobile</h3>
-                    <p class="text-purple-300 text-sm mb-4 rounded-lg">Frontend Developer . 2021-2022</p>
-                    <p class="text-gray-400 text-sm leading-relaxed rounded-lg">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                </div>
-                <!-- Experience Card 4 -->
-                <div class="glass-card p-6 rounded-xl shadow-lg flex flex-col items-start">
-                    <div class="bg-purple-700 p-3 rounded-full mb-4">
-                        <i class="fas fa-laptop-code text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2 rounded-lg">Cill on the Mobile</h3>
-                    <p class="text-purple-300 text-sm mb-4 rounded-lg">Full-stack Intern . 2020-2021</p>
-                    <p class="text-gray-400 text-sm leading-relaxed rounded-lg">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
+        <section class="min-h-screen relative flex flex-col items-center justify-center text-center px-4 md:px-8 lg:px-16">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-8 max-w-6xl">
+        <!-- Left side - Avatar -->
+        <div class="w-full md:w-2/5 relative"> <!-- Changed from w-1/2 to w-2/5 -->
+            <div class="relative">
+                <!-- Gradient background for image -->
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-900 via-purple-800 to-blue-900 opacity-50 blur-xl transform scale-105"></div>
+                <!-- Image container -->
+                <div class="relative overflow-hidden rounded-lg border-2 border-purple-600/50">
+                    <img src="https://i.ibb.co/9fbYLJw/your-image.jpg" 
+                         alt="Mayantha Udayanga" 
+                         class="w-full h-[300px] object-cover object-center hover:scale-105 transition-transform duration-500"
+                         style="object-position: center 30%;"> <!-- Adjusted to focus on face -->
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Looking for Job Section -->
-        <section class="py-16 px-4 md:px-8 lg:px-16 text-center">
-            <p class="text-lg text-gray-300 mb-6 rounded-lg">
-                I'm currently looking for job in <span class="gradient-text font-semibold">Functional</span> here.
-            </p>
-            <div class="flex flex-wrap justify-center gap-6 mb-12">
-                <!-- Placeholder for company logos -->
-                <div class="w-12 h-12 bg-[#2a0055] rounded-full flex items-center justify-center border border-purple-700">
-                    <i class="fab fa-google text-purple-400 text-xl"></i>
-                </div>
-                <div class="w-12 h-12 bg-[#2a0055] rounded-full flex items-center justify-center border border-purple-700">
-                    <i class="fab fa-apple text-purple-400 text-xl"></i>
-                </div>
-                <div class="w-12 h-12 bg-[#2a0055] rounded-full flex items-center justify-center border border-purple-700">
-                    <i class="fab fa-microsoft text-purple-400 text-xl"></i>
-                </div>
-                <div class="w-12 h-12 bg-[#2a0055] rounded-full flex items-center justify-center border border-purple-700">
-                    <i class="fab fa-amazon text-purple-400 text-xl"></i>
-                </div>
-                <div class="w-12 h-12 bg-[#2a0055] rounded-full flex items-center justify-center border border-purple-700">
-                    <i class="fab fa-facebook text-purple-400 text-xl"></i>
-                </div>
-                <div class="w-12 h-12 bg-[#2a0055] rounded-full flex items-center justify-center border border-purple-700">
-                    <i class="fab fa-linkedin text-purple-400 text-xl"></i>
-                </div>
+        <!-- Right side - Content -->
+        <div class="w-full md:w-3/5 space-y-6 text-left"> <!-- Changed from w-1/2 to w-3/5 -->
+            <p class="text-purple-400 text-sm tracking-wider uppercase font-medium">WELCOME TO MY DIGITAL SPACE</p>
+            
+            <!-- Replace the existing h1 title section -->
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8"> <!-- Added mb-8 for more space -->
+    Hi, I'm <span class="typewriter gradient-text"></span>
+</h1>
+            
+<p class="text-2xl font-medium text-gray-200 mt-4"> <!-- Added mt-4 for additional spacing -->
+    Aspiring Software Engineer & Cloud Computing Enthusiast
+</p>
+            
+            <div class="space-y-4">
+                <p class="text-gray-300 text-lg leading-relaxed">
+                    Second-year Software Engineering undergraduate with a passion for cloud computing
+                    and AWS technologies. Combining academic excellence with hands-on experience in
+                    modern development practices.
+                </p>
+                
+                <p class="text-gray-400 text-lg leading-relaxed">
+                    Currently exploring the intersection of cloud architecture and software development,
+                    while pursuing AWS certifications to build scalable and innovative solutions.
+                </p>
             </div>
 
-            <!-- Central Glowing Icon -->
-            <div class="relative w-32 h-32 mx-auto mb-16 flex items-center justify-center">
-                <div class="absolute inset-0 rounded-full bg-purple-500 opacity-30 blur-3xl"></div>
-                <div class="relative text-7xl font-bold gradient-text glowing-icon rounded-lg">M</div>
+            <!-- Skill badges moved below introduction -->
+            <div class="flex flex-wrap gap-3 mt-8">
+                <span class="px-4 py-2 rounded-lg glass-card text-sm font-medium">AWS Cloud</span>
+                <span class="px-4 py-2 rounded-lg glass-card text-sm font-medium">Software Engineering</span>
+                <span class="px-4 py-2 rounded-lg glass-card text-sm font-medium">Cloud Computing</span>
+                <span class="px-4 py-2 rounded-lg glass-card text-sm font-medium">Problem Solving</span>
             </div>
-        </section>
+        </div>
+    </div>
 
-        <!-- Example Project Section -->
-        <section class="py-16 px-4 md:px-8 lg:px-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 rounded-lg">Example Project</h2>
-            <div class="max-w-5xl mx-auto space-y-12">
-                <!-- Project Card 1 -->
-                <div class="bg-[#2a0055] p-6 rounded-xl shadow-lg flex flex-col md:flex-row items-center md:items-start gap-6">
-                    <div class="flex-shrink-0 w-full md:w-1/2 h-48 md:h-auto project-card-image rounded-lg flex items-center justify-center text-gray-500">
-                        Image Placeholder
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <i class="fas fa-chevron-down text-purple-400 text-2xl"></i>
+    </div>
+</section>
+
+        <!-- Add this section after the Hero Section and before Work Experience -->
+<section class="min-h-screen py-16 px-4 md:px-8 lg:px-16 bg-opacity-50 backdrop-filter backdrop-blur-lg">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+        <span class="gradient-text">Education</span>
+    </h2>
+    
+    <div class="max-w-6xl mx-auto">
+        <!-- Main Education Card -->
+        <div class="glass-card p-8 rounded-xl mb-8 transform hover:scale-102 transition-all duration-300">
+            <div class="flex flex-col md:flex-row items-start gap-6">
+                <!-- Institution Logo/Icon -->
+                <div class="flex-shrink-0">
+                    <div class="w-16 h-16 bg-purple-700 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-university text-3xl text-white"></i>
                     </div>
-                    <div class="flex-grow text-center md:text-left">
-                        <h3 class="text-2xl font-semibold mb-3 rounded-lg">Example Project</h3>
-                        <p class="text-gray-400 leading-relaxed rounded-lg">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </div>
+                
+                <!-- Education Details -->
+                <div class="flex-grow">
+                    <h3 class="text-2xl font-bold text-white mb-2">Software Engineering</h3>
+                    <p class="text-xl text-purple-400 mb-3">NIBM (National Institute of Business Management)</p>
+                    <div class="flex flex-wrap gap-4 text-gray-300 mb-4">
+                        <span class="flex items-center">
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            2024 - 2025
+                        </span>
+                        <span class="flex items-center">
+                            <i class="fas fa-graduation-cap mr-2"></i>
+                            Undergraduate
+                        </span>
+                        <span class="flex items-center">
+                            <i class="fas fa-clock mr-2"></i>
+                            2nd Year
+                        </span>
+                    </div>
+                    
+                    <!-- Current Status & Achievements -->
+                    <div class="space-y-3">
+                        <p class="text-gray-300 leading-relaxed">
+                            Currently pursuing a degree in Software Engineering with a focus on modern development 
+                            practices and cloud computing technologies.
                         </p>
+                        
+                        <!-- Key Modules/Achievements -->
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 bg-purple-900/30 rounded-full text-sm text-purple-300">
+                                Cloud Computing
+                            </span>
+                            <span class="px-3 py-1 bg-purple-900/30 rounded-full text-sm text-purple-300">
+                                Software Architecture
+                            </span>
+                            <span class="px-3 py-1 bg-purple-900/30 rounded-full text-sm text-purple-300">
+                                Web Development
+                            </span>
+                            <span class="px-3 py-1 bg-purple-900/30 rounded-full text-sm text-purple-300">
+                                Database Management
+                            </span>
+                        </div>
                     </div>
                 </div>
-                <!-- Project Card 2 -->
-                <div class="bg-[#2a0055] p-6 rounded-xl shadow-lg flex flex-col md:flex-row items-center md:items-start gap-6">
-                    <div class="flex-shrink-0 w-full md:w-1/2 h-48 md:h-auto project-card-image rounded-lg flex items-center justify-center text-gray-500">
-                        Image Placeholder
-                    </div>
-                    <div class="flex-grow text-center md:text-left">
-                        <h3 class="text-2xl font-semibold mb-3 rounded-lg">Example Project</h3>
-                        <p class="text-gray-400 leading-relaxed rounded-lg">
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
+                
+                <!-- Progress Indicator -->
+                <div class="flex-shrink-0 mt-4 md:mt-0">
+                    <div class="relative w-20 h-20">
+                        <svg class="w-full h-full" viewBox="0 0 36 36">
+                            <path d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                                fill="none"
+                                stroke="#2a0055"
+                                stroke-width="3"
+                            />
+                            <path d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                                fill="none"
+                                stroke="#a855f7"
+                                stroke-width="3"
+                                stroke-dasharray="50, 100"
+                            />
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center text-sm font-semibold text-purple-400">
+                            50%
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
+
+        <!-- Work Experience Section (Commented out until you have experience)
+<section class="py-16 px-4 md:px-8 lg:px-16">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 rounded-lg">Work Experience</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div class="glass-card p-6 rounded-xl shadow-lg flex flex-col items-start">
+            <div class="bg-purple-700 p-3 rounded-full mb-4">
+                <i class="fas fa-mobile-alt text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 rounded-lg">Cill on the Mobile</h3>
+            <p class="text-purple-300 text-sm mb-4 rounded-lg">UI/UX Designer . 2023-Present</p>
+            <p class="text-gray-400 text-sm leading-relaxed rounded-lg">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+        </div>
+        <div class="glass-card p-6 rounded-xl shadow-lg flex flex-col items-start">
+            <div class="bg-purple-700 p-3 rounded-full mb-4">
+                <i class="fas fa-paint-brush text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 rounded-lg">Cill on the Mobile</h3>
+            <p class="text-purple-300 text-sm mb-4 rounded-lg">UI/UX Designer . 2022-2023</p>
+            <p class="text-gray-400 text-sm leading-relaxed rounded-lg">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+        </div>
+        <div class="glass-card p-6 rounded-xl shadow-lg flex flex-col items-start">
+            <div class="bg-purple-700 p-3 rounded-full mb-4">
+                <i class="fas fa-code text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 rounded-lg">Cill on the Mobile</h3>
+            <p class="text-purple-300 text-sm mb-4 rounded-lg">Frontend Developer . 2021-2022</p>
+            <p class="text-gray-400 text-sm leading-relaxed rounded-lg">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+        </div>
+        <div class="glass-card p-6 rounded-xl shadow-lg flex flex-col items-start">
+            <div class="bg-purple-700 p-3 rounded-full mb-4">
+                <i class="fas fa-laptop-code text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 rounded-lg">Cill on the Mobile</h3>
+            <p class="text-purple-300 text-sm mb-4 rounded-lg">Full-stack Intern . 2020-2021</p>
+            <p class="text-gray-400 text-sm leading-relaxed rounded-lg">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+        </div>
+    </div>
+</section>
+-->
+
+        <!-- Add this section after the Work Experience section -->
+<section class="py-16 px-4 md:px-8 lg:px-16 bg-opacity-50 backdrop-filter backdrop-blur-lg">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+        <span class="gradient-text">Digital Certifications</span>
+    </h2>
+    
+    <div class="max-w-6xl mx-auto">
+        <!-- Credly Badges Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Badge 1 -->
+            <div class="glass-card p-4 rounded-xl hover:transform hover:scale-105 transition-all duration-300">
+                <div class="relative w-full aspect-square mb-4 flex items-center justify-center">
+                    <div 
+                        data-iframe-width="100%" 
+                        data-iframe-height="100%" 
+                        data-share-badge-id="62ec3422-12f2-487e-8b6c-5b4e7ea5796f" 
+                        data-share-badge-host="https://www.credly.com"
+                        class="w-full h-full">
+                    </div>
+                    <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+                </div>
+                <h3 class="text-lg font-semibold text-purple-400 mb-2">Share Data Using Google Data</h3>
+                <p class="text-sm text-gray-400">Issued by Google Cloud</p>
+            </div>
+
+            <!-- Badge Template (duplicate for each badge) -->
+            <div class="glass-card p-4 rounded-xl hover:transform hover:scale-105 transition-all duration-300">
+                <div class="relative w-full aspect-square mb-4 flex items-center justify-center">
+                    <div 
+                        data-iframe-width="100%" 
+                        data-iframe-height="100%" 
+                        data-share-badge-id="458abf8f-6bfc-41c1-86c5-d6eda2767628" 
+                        data-share-badge-host="https://www.credly.com"
+                        class="w-full h-full">
+                    </div>
+                    <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+                </div>
+                <h3 class="text-lg font-semibold text-purple-400 mb-2">Introduction to Cybersecurity</h3>
+                <p class="text-sm text-gray-400">Issued by Cisco</p>
+            </div>
+        </div>
+
+        <!-- View All Certificates Button -->
+        <div class="text-center mt-12">
+            <a href="https://www.credly.com/users/mayantha-udayanga/badges#credly" 
+               target="_blank" 
+               class="inline-flex items-center px-6 py-3 glass-card rounded-lg text-white hover:bg-purple-900 transition duration-300">
+                <span>View All Certificates</span>
+                <i class="fas fa-external-link-alt ml-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
 
         <!-- Contact Section -->
         <section class="py-16 px-4 md:px-8 lg:px-16 text-center">
@@ -419,6 +668,24 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error updating viewer count:', error);
         }
     }, (error) => console.error('Error monitoring presence:', error));
+</script>
+<script>
+// Add this to your existing scripts
+document.addEventListener('DOMContentLoaded', function() {
+    const text = "Mayantha Udayanga";
+    const typewriter = document.querySelector('.typewriter');
+    let i = 0;
+    
+    function type() {
+        if (i < text.length) {
+            typewriter.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, 100);
+        }
+    }
+    
+    type();
+});
 </script>
 </body>
 
