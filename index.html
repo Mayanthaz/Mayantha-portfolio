@@ -1,1017 +1,552 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mayantha Udayanga | Portfolio | CV | Software Engineer</title>
-    <meta name="description" content="Portfolio, CV, and personal website of Mayantha Udayanga (DP Mayantha Udayanga, dpm udayanga). Discover projects, experience, and download CV. Software Engineer, UI/UX Designer, Sri Lanka.">
-    <meta name="keywords" content="Mayantha Udayanga, DP Mayantha Udayanga, dpm udayanga, mayantha, Mayantha CV, Mayantha portfolio, Software Engineer, UI/UX Designer, Download CV, Portfolio, Projects, Experience, Sri Lanka, DP Mayantha, DP Mayantha Udayanga portfolio, DP Mayantha CV, DP Mayantha Udayanga Sri Lanka">
+    <title>Mayantha Udayanga | Software Engineer Portfolio</title>
+    <meta name="description" content="The portfolio of Mayantha Udayanga, a Software Engineer specializing in cloud computing and modern web technologies.">
     <meta name="author" content="Mayantha Udayanga">
-    <meta property="og:title" content="Mayantha Udayanga | Portfolio | CV | DP Mayantha Udayanga">
-    <meta property="og:description" content="Discover the portfolio, CV, and projects of Mayantha Udayanga (DP Mayantha Udayanga, dpm udayanga). Software Engineer and UI/UX Designer from Sri Lanka.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://your-portfolio-url.com">
-    <!-- Tailwind CSS CDN -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Inter Font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
     <style>
+        :root {
+            --bg-color: #020617; /* Tailwind slate-950 */
+            --card-color: #0f172a; /* Tailwind slate-900 */
+            --border-color: rgba(56, 189, 248, 0.15); /* Sky-400 with opacity */
+            --text-color: #cbd5e1; /* Tailwind slate-300 */
+            --accent-primary: #8b5cf6; /* Violet-500 */
+            --accent-secondary: #38bdf8; /* Sky-400 */
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        html {
+            cursor: none;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0a23; /* Deep dark blue */
-            color: #e0e0e0;
+            font-family: var(--font-sans);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            /* Static dot pattern is now a fallback, animation is primary */
+            background-image: radial-gradient(#1e293b 1px, transparent 0);
+            background-size: 25px 25px;
             overflow-x: hidden;
+            scroll-padding-top: 100px;
         }
-        .gradient-text {
-            background: linear-gradient(120deg, #a855f7, #0ea5e9, #a855f7);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 3s linear infinite;
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-mono);
         }
-        
-        @keyframes shine {
-            to {
-                background-position: 200% center;
-            }
-        }
-        .card-gradient-border {
-            border-image: linear-gradient(to right, #a855f7, #0ea5e9) 1;
-            border-width: 2px;
-            border-style: solid;
-        }
-        .glowing-icon {
-            filter: drop-shadow(0 0 10px #a855f7) drop-shadow(0 0 20px #0ea5e9);
-        }
-        .project-card-image {
-            background-color: #181830; /* Darker blue for image placeholder */
-            border: 1px solid #2a0055;
-        }
-        /* Liquid Glass Effect for Work Experience Cards */
-        .glass-card {
-            background-color: rgba(20, 20, 40, 0.5); /* Dark glass */
-            backdrop-filter: blur(15px); /* Apply blur to content behind */
-            -webkit-backdrop-filter: blur(15px); /* For Safari support */
-            border: 1px solid rgba(168, 85, 247, 0.3); /* Lighter, semi-transparent border */
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Subtle shadow */
-        }
-        /* Animated Gradient Background */
-        #animated-bg {
+
+        /* --- Animated Background --- */
+        #background-animation {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -1;
-            pointer-events: none;
-            background: linear-gradient(120deg, #181830, #2a0055, #0ea5e9, #181830);
-            background-size: 400% 400%;
-            animation: gradientMove 16s ease-in-out infinite;
-            opacity: 0.8;
+            overflow: hidden;
+            z-index: -1; /* This is crucial to keep it behind your content */
         }
 
-        @keyframes gradientMove {
-            0% {background-position: 0% 50%;}
-            50% {background-position: 100% 50%;}
-            100% {background-position: 0% 50%;}
-        }
-        .text-purple-400, .text-purple-300 {
-            color: #a855f7 !important;
-        }
-        .bg-purple-700 {
-            background-color: #2a0055 !important;
-        }
-        .border-purple-700 {
-            border-color: #a855f7 !important;
-        }
-        .bg-[#2a0055] {
-            background-color: #181830 !important;
-        }
-        .text-gray-400 {
-            color: #b3b3c6 !important;
-        }
-        .text-gray-300 {
-            color: #e0e0e0 !important;
-        }
-        .text-gray-500 {
-            color: #b3b3c6 !important;
-        }
-        .text-gray-600 {
-            color: #8888aa !important;
-        }
-        .text-white {
-            color: #fff !important;
-        }
-        .hover\:bg-purple-900:hover {
-            background-color: #181830 !important;
-        }
-    
-        /* Social Media Button Hover Effects */
-    .social-icon {
-        transition: all 0.3s ease;
-    }
-    
-    .social-icon:hover {
-        transform: translateY(-3px);
-        filter: drop-shadow(0 0 8px #a855f7) drop-shadow(0 0 12px #0ea5e9);
-        color: white;
-    }
-
-    /* Add cursor highlight */
-    .social-icon {
-        cursor: pointer;
-    }
-    /* Animations */
-    .animate-fade-in-up {
-        animation: fadeInUp 0.8s ease-out;
-    }
-    
-    @keyframes fadeInUp {
-        from {
+        #background-animation span {
+            position: absolute;
+            bottom: -50px; /* Start from below the screen */
+            border-radius: 50%;
+            animation: float 25s linear infinite;
             opacity: 0;
-            transform: translateY(20px);
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg); /* Move up and off the screen */
+                opacity: 0;
+            }
         }
-    }
 
-    /* Updated avatar styles */
-    .avatar-image {
-        object-position: center;
-        filter: contrast(1.1) saturate(1.2);
-        transition: all 0.4s ease;
-        position: relative;
-        z-index: 2;
-    }
-    
-    .avatar-image:hover {
-        transform: scale(1.02);
-        border-color: rgba(168, 85, 247, 0.8);
-        box-shadow: 
-            0 0 30px rgba(168, 85, 247, 0.3),
-            0 0 60px rgba(14, 165, 233, 0.2);
-    }
+        /* --- Individual Orb Styles (for variety) --- */
+        #background-animation span:nth-child(1) {
+            left: 10%;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-primary);
+            animation-duration: 35s;
+            animation-delay: 2s;
+        }
+        #background-animation span:nth-child(2) {
+            left: 20%;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-secondary);
+            animation-duration: 20s;
+            animation-delay: 0s;
+        }
+        #background-animation span:nth-child(3) {
+            left: 30%;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-primary);
+            animation-duration: 45s;
+            animation-delay: 5s;
+        }
+        #background-animation span:nth-child(4) {
+            left: 40%;
+            width: 30px;
+            height: 30px;
+            background: var(--accent-secondary);
+            animation-duration: 30s;
+            animation-delay: 1s;
+        }
+        #background-animation span:nth-child(5) {
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            background: var(--accent-primary);
+            animation-duration: 22s;
+            animation-delay: 6s;
+        }
+        #background-animation span:nth-child(6) {
+            left: 60%;
+            width: 45px;
+            height: 45px;
+            background: var(--accent-secondary);
+            animation-duration: 40s;
+            animation-delay: 3s;
+        }
+        #background-animation span:nth-child(7) {
+            left: 70%;
+            width: 35px;
+            height: 35px;
+            background: var(--accent-primary);
+            animation-duration: 28s;
+            animation-delay: 8s;
+        }
+        #background-animation span:nth-child(8) {
+            left: 80%;
+            width: 15px;
+            height: 15px;
+            background: var(--accent-secondary);
+            animation-duration: 18s;
+            animation-delay: 4s;
+        }
+        #background-animation span:nth-child(9) {
+            left: 90%;
+            width: 55px;
+            height: 55px;
+            background: var(--accent-primary);
+            animation-duration: 50s;
+            animation-delay: 10s;
+        }
+        #background-animation span:nth-child(10) {
+            left: 5%;
+            width: 28px;
+            height: 28px;
+            background: var(--accent-secondary);
+            animation-duration: 33s;
+            animation-delay: 7s;
+        }
+        #background-animation span:nth-child(11) {
+            left: 85%;
+            width: 22px;
+            height: 22px;
+            background: var(--accent-primary);
+            animation-duration: 26s;
+            animation-delay: 9s;
+        }
+        #background-animation span:nth-child(12) {
+            left: 45%;
+            width: 38px;
+            height: 38px;
+            background: var(--accent-secondary);
+            animation-duration: 38s;
+            animation-delay: 11s;
+        }
+        
+        /* Custom Cursor */
+        .cursor-dot {
+            pointer-events: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-secondary);
+            transition: transform 0.15s ease-out;
+        }
+        .cursor-outline {
+            pointer-events: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--accent-secondary);
+            opacity: 0.5;
+            transition: transform 0.2s ease-out, width 0.3s ease, height 0.3s ease;
+        }
+        body:hover .cursor-dot, body:hover .cursor-outline { opacity: 1; }
+        a:hover ~ .cursor-outline, button:hover ~ .cursor-outline, .bento-card:hover ~ .cursor-outline {
+            width: 50px;
+            height: 50px;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        html.cursor-text .cursor-dot {
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+        html.cursor-text .cursor-outline {
+            width: 5px;
+            height: 25px;
+            border-radius: 5px;
+            background-color: var(--accent-secondary);
+            border-color: transparent;
+        }
 
-    /* Enhanced dark glow effect */
-    .avatar-container {
-        position: relative;
-        isolation: isolate;
-    }
 
-    .avatar-container::after {
-        content: '';
-        position: absolute;
-        inset: -20px;
-        background: radial-gradient(
-            circle at center,
-            rgba(88, 28, 135, 0.3),
-            rgba(30, 58, 138, 0.1)
-        );
-        z-index: 1;
-        filter: blur(15px);
-    }
+        /* Bento Grid Card Style */
+        .bento-card {
+            background-color: var(--card-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            background-color: #1e293b; /* slate-800 */
+        }
+        .bento-card .card-glow {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at var(--x) var(--y), var(--accent-secondary) 0%, transparent 20%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .bento-card:hover .card-glow {
+            opacity: 0.1;
+        }
 
-    /* Enhanced image hover effect */
-    .image-container:hover::after {
-        opacity: 0.7;
-    }
-    
-    /* Updated glass card effect for skills */
-    .glass-card {
-        background: rgba(88, 28, 135, 0.1);
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba(168, 85, 247, 0.2);
-        transition: all 0.3s ease;
-    }
-    
-    .glass-card:hover {
-        background: rgba(88, 28, 135, 0.2);
-        transform: translateY(-2px);
-        border-color: rgba(168, 85, 247, 0.4);
-    }
+        /* Typewriter */
+        .typewriter {
+            border-right: 2px solid var(--accent-secondary);
+            animation: blink-caret .75s step-end infinite;
+        }
+        @keyframes blink-caret {
+            50% { border-color: transparent; }
+        }
 
-    .badge-container {
-        position: relative;
-        padding-top: 100%; /* Creates a square aspect ratio */
-    }
-    
-    .badge-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 0.5rem;
-    }
-    
-    .glass-card:hover {
-        box-shadow: 0 0 25px rgba(168, 85, 247, 0.2);
-        transform: translateY(-5px);
-    }
+        /* Command Palette */
+        #command-palette {
+            backdrop-filter: blur(8px);
+        }
 
-    /* Updated badge container styles */
-    .glass-card [data-iframe-width] {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 270px;
-    }
-    
-    .glass-card iframe {
-        max-width: 100%;
-        max-height: 100%;
-        width: auto !important;
-        height: auto !important;
-    }
-
-    /* Update the existing typewriter styles */
-.typewriter {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 2px solid #a855f7;
-    animation: blink-caret .75s step-end infinite;
-}
-
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #a855f7 }
-}
+        /* Social Dock */
+        #social-dock {
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.5rem;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+        }
+        #social-dock a {
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        #social-dock:hover a { transform: translateY(-4px); }
+        #social-dock a:hover { transform: translateY(-12px) scale(1.2); }
+        #social-dock a:hover + a, #social-dock a:has(+ a:hover) { transform: translateY(-8px) scale(1.1); }
     </style>
-    <!-- Add this in your <head> section to load Google reCAPTCHA v2 -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <!-- Add this before closing </head> tag -->
-<script>
-const ANTHROPIC_API_KEY = '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';
-const PORTFOLIO_CONTEXT = `
-You are MayaGPT, a specialized assistant for Mayantha Udayanga's portfolio.
-Only answer questions related to:
-- Mayantha's education (Software Engineering at NIBM)
-- Skills (AWS Cloud, Java OOP, MySQL, etc.)
-- Certifications (Google Cloud, Cisco)
-- Contact information
-- Background and aspirations
-Politely decline to answer questions not related to the portfolio.
-`;
-
-async function getChatResponse(message) {
-    try {
-        const response = await fetch('https://api.anthropic.com/v1/messages', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-api-key': ANTHROPIC_API_KEY,
-                'anthropic-version': '2023-06-01'
-            },
-            body: JSON.stringify({
-                model: 'claude-3-sonnet-20240229',
-                max_tokens: 1000,
-                messages: [{
-                    role: 'user',
-                    content: `${PORTFOLIO_CONTEXT}\n\nUser: ${message}`
-                }]
-            })
-        });
-
-        const data = await response.json();
-        return data.content[0].text;
-    } catch (error) {
-        console.error('Error:', error);
-        return 'Sorry, I encountered an error. Please try again.';
-    }
-}
-</script>
 </head>
-<body class="min-h-screen flex flex-col">
-    <!-- Animated Gradient Background -->
-    <div id="animated-bg"></div>
+<body class="text-slate-300">
+    <div id="background-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
-    <!-- Header -->
-    <header class="w-full py-2 px-8 md:px-16 lg:px-24 flex justify-end items-center relative z-10">
-        <!-- Download CV Button aligned to right -->
-        <a href="Mayantha_Udayanga_CV.pdf" download class="px-4 py-2 rounded-lg glass-card backdrop-blur-lg border border-purple-400 text-white hover:bg-purple-900 transition duration-300 flex items-center justify-center text-lg font-semibold">
-            <i class="fas fa-download mr-2"></i> Download CV
-        </a>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <header class="fixed top-0 left-0 right-0 z-40">
+        <nav class="container mx-auto max-w-7xl px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold font-mono text-white">MAYANTHA /&gt;</a>
+            <div id="cmd-button" class="px-4 py-2 rounded-lg text-slate-400 hover:bg-slate-800 transition duration-200 flex items-center justify-center text-sm font-semibold border border-slate-700 cursor-pointer">
+                <span class="hidden md:inline">Cmd + K</span>
+                <span class="md:hidden"><i class="fas fa-search"></i></span>
+            </div>
+        </nav>
     </header>
 
-    <main class="flex-grow relative z-10">
-        <!-- Hero Section -->
-        <section class="min-h-screen relative flex flex-col items-center justify-center text-center px-4 md:px-8 lg:px-16 pt-8"> <!-- Added pt-8 to reduce top space -->
-    <div class="container mx-auto flex flex-col md:flex-row items-start justify-between gap-8 max-w-6xl"> <!-- Changed items-center to items-start -->
-        <!-- Left side - Avatar -->
-        <div class="w-full md:w-1/3 relative"> <!-- Changed from w-2/5 to w-1/3 -->
-            <div class="relative">
-                <!-- Gradient background for image -->
-                <div class="absolute inset-0 bg-gradient-to-r from-purple-900 via-purple-800 to-blue-900 opacity-50 blur-xl transform scale-105"></div>
-                <!-- Image container -->
-                <div class="relative overflow-hidden rounded-lg border-2 border-purple-600/50">
-                    <img src="https://i.ibb.co/9fbYLJw/your-image.jpg" 
-                         alt="Mayantha Udayanga" 
-                         class="w-full object-cover object-center hover:scale-105 transition-transform duration-500"
-                         style="height: 300px; object-position: center 15%;"> <!-- Reduced height from 400px to 300px -->
-                </div>
+    <main class="relative z-10 pt-24 px-6">
+        <section id="home" class="container mx-auto max-w-5xl py-16 md:py-24 text-center">
+            <div class="w-24 h-24 mx-auto mb-6 rounded-full p-1.5 bg-gradient-to-br from-violet-500 to-sky-400">
+                <img src="https://i.ibb.co/9fbYLJw/your-image.jpg" alt="Mayantha Udayanga" class="w-full h-full object-cover rounded-full border-2 border-slate-950">
             </div>
-        </div>
-
-        <!-- Right side - Content -->
-        <div class="w-full md:w-2/3 space-y-6 text-left mt-0"> <!-- Changed from w-3/5 to w-2/3 and added mt-0 -->
-            <p class="text-purple-400 text-sm tracking-wider uppercase font-medium">WELCOME TO MY DIGITAL SPACE</p>
-            
-            <!-- Replace the existing h1 title section -->
-<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8"> <!-- Added mb-8 for more space -->
-    Hi, I'm <span class="typewriter gradient-text"></span>
-</h1>
-            
-<p class="text-2xl font-medium text-gray-200 mt-4"> <!-- Added mt-4 for additional spacing -->
-    Aspiring Software Engineer & Cloud Computing Enthusiast
-</p>
-            
-            <div class="space-y-4">
-                <p class="text-gray-300 text-lg leading-relaxed">
-                    Second-year Software Engineering undergraduate with a passion for cloud computing
-                    and AWS technologies. Combining academic excellence with hands-on experience in
-                    modern development practices.
-                </p>
-                
-                <p class="text-gray-400 text-lg leading-relaxed">
-                    Currently exploring the intersection of cloud architecture and software development,
-                    while pursuing AWS certifications to build scalable and innovative solutions.
-                </p>
-            </div>
-
-            <!-- Skill badges moved below introduction -->
-            <div class="flex flex-wrap gap-3 mt-8">
-                <!-- Technical Skills -->
-                <span class="px-4 py-2 rounded-lg glass-card text-sm font-medium">AWS Cloud</span>
-                <span class="px-4 py-2 rounded-lg glass-card text-sm font-medium">Software Engineering</span>
-                <span class="px-4 py-2 rounded-lg glass-card text-sm font-medium">Cloud Computing</span>
-                <span class="px-4 py-2 rounded-lg glass-card text-sm font-medium">Java OOP</span>
-                <span class="px-4 py-2 rounded-lg glass-card text-sm font-medium">MySQL</span>
-                <span class="px-4 py-2 rounded-lg glass-card text-sm font-medium">HTML & CSS</span>
-                <span class="px-4 py-2 rounded-lg glass-card text-sm font-medium">PHP</span>
-                <span class="px-4 py-2 rounded-lg glass-card text-sm font-medium">Linux</span>
-                <span class="px-4 py-2 rounded-lg glass-card text-sm font-medium">Networking</span>
-                
-                <!-- Soft Skills -->
-                <span class="px-4 py-2 rounded-lg glass-card text-sm font-medium">Problem Solving</span>
-                <span class="px-4 py-2 rounded-lg glass-card text-sm font-medium">Effective Communication</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <i class="fas fa-chevron-down text-purple-400 text-2xl"></i>
-    </div>
-</section>
-
-        <!-- Add this section after the Hero Section and before Work Experience -->
-<section class="min-h-screen py-16 px-4 md:px-8 lg:px-16 bg-opacity-50 backdrop-filter backdrop-blur-lg">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
-        <span class="gradient-text">Education</span>
-    </h2>
-    
-    <div class="max-w-6xl mx-auto">
-        <!-- Main Education Card -->
-        <div class="glass-card p-8 rounded-xl mb-8 transform hover:scale-102 transition-all duration-300">
-            <div class="flex flex-col md:flex-row items-start gap-6">
-                <!-- Institution Logo/Icon -->
-                <div class="flex-shrink-0">
-                    <div class="w-16 h-16 bg-purple-700 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-university text-3xl text-white"></i>
-                    </div>
-                </div>
-                
-                <!-- Education Details -->
-                <div class="flex-grow">
-                    <h3 class="text-2xl font-bold text-white mb-2">Software Engineering</h3>
-                    <p class="text-xl text-purple-400 mb-3">NIBM (National Institute of Business Management)</p>
-                    <div class="flex flex-wrap gap-4 text-gray-300 mb-4">
-                        <span class="flex items-center">
-                            <i class="fas fa-calendar-alt mr-2"></i>
-                            2024 - 2025
-                        </span>
-                        <span class="flex items-center">
-                            <i class="fas fa-graduation-cap mr-2"></i>
-                            Undergraduate
-                        </span>
-                        <span class="flex items-center">
-                            <i class="fas fa-clock mr-2"></i>
-                            2nd Year
-                        </span>
-                    </div>
-                    
-                    <!-- Current Status & Achievements -->
-                    <div class="space-y-3">
-                        <p class="text-gray-300 leading-relaxed">
-                            Currently pursuing a degree in Software Engineering with a focus on modern development 
-                            practices and cloud computing technologies.
-                        </p>
-                        
-                        <!-- Key Modules/Achievements -->
-                        <div class="flex flex-wrap gap-2 mt-4">
-                            <span class="px-3 py-1 bg-purple-900/30 rounded-full text-sm text-purple-300">
-                                Cloud Computing
-                            </span>
-                            <span class="px-3 py-1 bg-purple-900/30 rounded-full text-sm text-purple-300">
-                                Software Architecture
-                            </span>
-                            <span class="px-3 py-1 bg-purple-900/30 rounded-full text-sm text-purple-300">
-                                Web Development
-                            </span>
-                            <span class="px-3 py-1 bg-purple-900/30 rounded-full text-sm text-purple-300">
-                                Database Management
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Progress Indicator -->
-                <div class="flex-shrink-0 mt-4 md:mt-0">
-                    <div class="relative w-20 h-20">
-                        <svg class="w-full h-full" viewBox="0 0 36 36">
-                            <path d="M18 2.0845
-                                a 15.9155 15.9155 0 0 1 0 31.831
-                                a 15.9155 15.9155 0 0 1 0 -31.831"
-                                fill="none"
-                                stroke="#2a0055"
-                                stroke-width="3"
-                            />
-                            <path d="M18 2.0845
-                                a 15.9155 15.9155 0 0 1 0 31.831
-                                a 15.9155 15.9155 0 0 1 0 -31.831"
-                                fill="none"
-                                stroke="#a855f7"
-                                stroke-width="3"
-                                stroke-dasharray="50, 100"
-                            />
-                        </svg>
-                        <div class="absolute inset-0 flex items-center justify-center text-sm font-semibold text-purple-400">
-                            50%
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-        <!-- Work Experience Section (Commented out until you have experience)
-<section class="py-16 px-4 md:px-8 lg:px-16">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 rounded-lg">Work Experience</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        <div class="glass-card p-6 rounded-xl shadow-lg flex flex-col items-start">
-            <div class="bg-purple-700 p-3 rounded-full mb-4">
-                <i class="fas fa-mobile-alt text-white text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2 rounded-lg">Cill on the Mobile</h3>
-            <p class="text-purple-300 text-sm mb-4 rounded-lg">UI/UX Designer . 2023-Present</p>
-            <p class="text-gray-400 text-sm leading-relaxed rounded-lg">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <h1 class="text-4xl md:text-6xl font-bold text-white">
+                <span class="typewriter">Mayantha Udayanga</span>
+            </h1>
+            <p class="text-lg md:text-xl mt-4 text-sky-300">Software Engineer | Cloud Enthusiast | AWS</p>
+            <p class="max-w-2xl mx-auto mt-6 text-slate-400">
+                A passionate software engineering student dedicated to building robust, scalable applications and diving deep into the world of cloud architecture.
             </p>
-        </div>
-        <div class="glass-card p-6 rounded-xl shadow-lg flex flex-col items-start">
-            <div class="bg-purple-700 p-3 rounded-full mb-4">
-                <i class="fas fa-paint-brush text-white text-2xl"></i>
+            <div class="mt-8 flex justify-center gap-4">
+                <a href="https://github.com/Mayanthaz" target="_blank" class="px-6 py-3 rounded-lg text-white font-semibold bg-slate-800 hover:bg-slate-700 transition-colors border border-slate-700">
+                    <i class="fab fa-github mr-2"></i> GitHub Profile
+                </a>
+                 <a href="Mayantha_Udayanga_CV.pdf" download class="px-6 py-3 rounded-lg text-white font-semibold bg-gradient-to-r from-violet-600 to-sky-600 hover:opacity-90 transition-opacity">
+                    <i class="fas fa-download mr-2"></i> Download CV
+                </a>
             </div>
-            <h3 class="text-xl font-semibold mb-2 rounded-lg">Cill on the Mobile</h3>
-            <p class="text-purple-300 text-sm mb-4 rounded-lg">UI/UX Designer . 2022-2023</p>
-            <p class="text-gray-400 text-sm leading-relaxed rounded-lg">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-        </div>
-        <div class="glass-card p-6 rounded-xl shadow-lg flex flex-col items-start">
-            <div class="bg-purple-700 p-3 rounded-full mb-4">
-                <i class="fas fa-code text-white text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2 rounded-lg">Cill on the Mobile</h3>
-            <p class="text-purple-300 text-sm mb-4 rounded-lg">Frontend Developer . 2021-2022</p>
-            <p class="text-gray-400 text-sm leading-relaxed rounded-lg">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-        </div>
-        <div class="glass-card p-6 rounded-xl shadow-lg flex flex-col items-start">
-            <div class="bg-purple-700 p-3 rounded-full mb-4">
-                <i class="fas fa-laptop-code text-white text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2 rounded-lg">Cill on the Mobile</h3>
-            <p class="text-purple-300 text-sm mb-4 rounded-lg">Full-stack Intern . 2020-2021</p>
-            <p class="text-gray-400 text-sm leading-relaxed rounded-lg">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-        </div>
-    </div>
-</section>
--->
-
-        <!-- Add this section after the Work Experience section -->
-<section class="py-16 px-4 md:px-8 lg:px-16 bg-opacity-50 backdrop-filter backdrop-blur-lg">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
-        <span class="gradient-text">Digital Certifications</span>
-    </h2>
-    
-    <div class="max-w-6xl mx-auto">
-        <!-- Credly Badges Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <!-- Badge 1 -->
-            <div class="glass-card p-4 rounded-xl hover:transform hover:scale-105 transition-all duration-300">
-                <div class="relative w-full aspect-square mb-4 flex items-center justify-center">
-                    <div 
-                        data-iframe-width="100%" 
-                        data-iframe-height="100%" 
-                        data-share-badge-id="62ec3422-12f2-487e-8b6c-5b4e7ea5796f" 
-                        data-share-badge-host="https://www.credly.com"
-                        class="w-full h-full">
-                    </div>
-                    <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-                </div>
-                <h3 class="text-lg font-semibold text-purple-400 mb-2">Share Data Using Google Data</h3>
-                <p class="text-sm text-gray-400">Issued by Google Cloud</p>
-            </div>
-
-            <!-- Badge Template (duplicate for each badge) -->
-            <div class="glass-card p-4 rounded-xl hover:transform hover:scale-105 transition-all duration-300">
-                <div class="relative w-full aspect-square mb-4 flex items-center justify-center">
-                    <div 
-                        data-iframe-width="100%" 
-                        data-iframe-height="100%" 
-                        data-share-badge-id="458abf8f-6bfc-41c1-86c5-d6eda2767628" 
-                        data-share-badge-host="https://www.credly.com"
-                        class="w-full h-full">
-                    </div>
-                    <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-                </div>
-                <h3 class="text-lg font-semibold text-purple-400 mb-2">Introduction to Cybersecurity</h3>
-                <p class="text-sm text-gray-400">Issued by Cisco</p>
-            </div>
-        </div>
-
-        <!-- View All Certificates Button -->
-        <div class="text-center mt-12">
-            <a href="https://www.credly.com/users/mayantha-udayanga/badges#credly" 
-               target="_blank" 
-               class="inline-flex items-center px-6 py-3 glass-card rounded-lg text-white hover:bg-purple-900 transition duration-300">
-                <span>View All Certificates</span>
-                <i class="fas fa-external-link-alt ml-2"></i>
-            </a>
-        </div>
-    </div>
-</section>
-
-        <!-- Contact Section -->
-        <section class="py-16 px-4 md:px-8 lg:px-16 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-8 rounded-lg">Contact</h2>
-            <p class="max-w-2xl mx-auto text-gray-400 leading-relaxed mb-8 rounded-lg">
-                Feel free to reach out to me for collaborations, questions, or just to say hello!
-                You can connect with me through the following channels:
-            </p>
-            <!-- Replace the existing social media links section with this -->
-<div class="flex justify-center space-x-6 text-2xl">
-    <a href="https://www.linkedin.com/in/mayanthaudayanga/" target="_blank" rel="noopener" class="social-icon text-gray-300 transition duration-300 rounded-lg">
-        <i class="fab fa-linkedin"></i>
-    </a>
-    <a href="https://github.com/Mayanthaz" target="_blank" rel="noopener" class="social-icon text-gray-300 transition duration-300 rounded-lg">
-        <i class="fab fa-github"></i>
-    </a>
-    <a href="mailto:Bimsaramaya1@gmail.com" target="_blank" rel="noopener" class="social-icon text-gray-300 transition duration-300 rounded-lg">
-        <i class="fas fa-envelope"></i>
-    </a>
-    <a href="https://www.youtube.com/@MAya-ho3fc" target="_blank" rel="noopener" class="social-icon text-gray-300 transition duration-300 rounded-lg">
-        <i class="fab fa-youtube"></i>
-    </a>
-    <a href="https://wa.me/94783686802" target="_blank" rel="noopener" class="social-icon text-gray-300 transition duration-300 rounded-lg" title="Chat or add to contacts">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-</div>
-            <!-- Comment Box -->
-            <form id="commentForm" class="max-w-xl mx-auto mt-8 flex flex-col items-center"
-      action="https://formspree.io/f/xrblayvw" method="POST">
-    <textarea id="commentBox" name="comment" rows="4" placeholder="Write your comment here..."
-        class="w-full p-3 rounded-lg glass-card text-gray-300 bg-transparent border border-purple-700 mb-4"></textarea>
-    <div class="mb-4" id="recaptcha-container" style="display:none;">
-        <div class="g-recaptcha" data-sitekey="6LdPKZkrAAAAAPP7O5pQUmVepD2Zlr3Jp-pJqxhH"></div>
-    </div>
-    <button type="submit" id="sendBtn"
-        class="px-6 py-2 rounded-lg glass-card backdrop-blur-lg border border-purple-400 text-white hover:bg-purple-900 transition duration-300 font-semibold flex items-center justify-center">
-        <i class="fas fa-paper-plane mr-2"></i> Send
-    </button>
-</form>
-
-<!-- Visitor Counter (updated) -->
-<div id="visitor-counter" class="mt-6 text-center text-lg font-semibold text-purple-400 glass-card px-4 py-2 rounded-lg max-w-xs mx-auto">
-    Live Viewers: <span id="visitor-count">0</span>
-</div>
-
-<script>
-    // Show reCAPTCHA only if comment box is not empty
-    document.getElementById('sendBtn').addEventListener('click', function(e) {
-        var comment = document.getElementById('commentBox').value.trim();
-        var recaptchaContainer = document.getElementById('recaptcha-container');
-        if (comment === "") {
-            recaptchaContainer.style.display = "none";
-            alert("Please enter a comment before sending.");
-            e.preventDefault();
-        } else {
-            recaptchaContainer.style.display = "block";
-            // Prevent form submission until reCAPTCHA is completed
-            if (grecaptcha.getResponse() === "") {
-                alert("Please complete the reCAPTCHA before sending.");
-                e.preventDefault();
-            }
-        }
-    });
-</script>
         </section>
-    </main>
 
-    <!-- Footer -->
-    <footer class="w-full py-8 text-center text-gray-500 text-sm rounded-lg relative z-10">
-        &copy; 2025 Mayantha Udayanga All rights reserved.
+        <section id="grid" class="container mx-auto max-w-7xl mt-12">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="bento-card lg:col-span-2">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-graduation-cap text-2xl text-violet-400 mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Education</h3>
+                    <p class="text-slate-400 mb-4">BSc (Hons) Software Engineering at NIBM (2024-2025).</p>
+                    <div class="flex flex-wrap gap-2 text-sm">
+                        <span class="px-3 py-1 bg-slate-800 rounded-full">Cloud Computing</span>
+                        <span class="px-3 py-1 bg-slate-800 rounded-full">Data Structures</span>
+                        <span class="px-3 py-1 bg-slate-800 rounded-full">Web Development</span>
+                    </div>
+                </div>
+                
+                <div class="bento-card">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-certificate text-2xl text-sky-400 mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Certifications</h3>
+                    <ul class="space-y-2 text-slate-400">
+                        <li class="flex items-center gap-2"><i class="fab fa-google text-yellow-400"></i> Google Cloud</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-shield-alt text-blue-400"></i> Cisco Cybersecurity</li>
+                    </ul>
+                </div>
+                
+                <div class="bento-card lg:col-span-3">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-code text-2xl text-violet-400 mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Featured Projects</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div class="p-4 rounded-lg bg-slate-800/50 border border-slate-700">
+                            <h4 class="font-bold text-white">Portfolio Website V3</h4>
+                            <p class="text-sm text-slate-400 mt-1">This website, built with modern UI principles and interactive features.</p>
+                            <div class="flex flex-wrap gap-2 text-xs mt-3">
+                                <span class="px-2 py-1 bg-sky-900/50 text-sky-300 rounded">HTML</span>
+                                <span class="px-2 py-1 bg-sky-900/50 text-sky-300 rounded">TailwindCSS</span>
+                                <span class="px-2 py-1 bg-sky-900/50 text-sky-300 rounded">JavaScript</span>
+                            </div>
+                            <div class="mt-4 flex gap-4">
+                                <a href="https://github.com/Mayanthaz/Portfolio" target="_blank" class="text-sm text-slate-300 hover:text-white"><i class="fab fa-github mr-1"></i> Code</a>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-lg bg-slate-800/50 border border-slate-700">
+                            <h4 class="font-bold text-white">Cloud File Storage Service</h4>
+                            <p class="text-sm text-slate-400 mt-1">A scalable file storage solution using AWS S3 and Lambda functions.</p>
+                            <div class="flex flex-wrap gap-2 text-xs mt-3">
+                                <span class="px-2 py-1 bg-yellow-900/50 text-yellow-300 rounded">AWS S3</span>
+                                <span class="px-2 py-1 bg-yellow-900/50 text-yellow-300 rounded">Lambda</span>
+                                <span class="px-2 py-1 bg-green-900/50 text-green-300 rounded">Node.js</span>
+                            </div>
+                             <div class="mt-4 flex gap-4">
+                                <a href="#" class="text-sm text-slate-300 hover:text-white"><i class="fas fa-globe mr-1"></i> Live Demo</a>
+                                <a href="#" class="text-sm text-slate-300 hover:text-white"><i class="fab fa-github mr-1"></i> Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card lg:col-span-3">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-layer-group text-2xl text-sky-400 mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Core Technologies</h3>
+                    <div class="flex flex-wrap gap-3 text-sm font-medium mt-4">
+                        <span class="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-full"><i class="fab fa-aws text-yellow-400"></i> AWS Cloud</span>
+                        <span class="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-full"><i class="fab fa-java text-red-400"></i> Java OOP</span>
+                        <span class="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-full"><i class="fas fa-database text-sky-400"></i> MySQL</span>
+                        <span class="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-full"><i class="fab fa-linux text-white"></i> Linux</span>
+                         <span class="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-full"><i class="fab fa-node-js text-green-400"></i> Node.js</span>
+                        <span class="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-full"><i class="fab fa-html5 text-orange-400"></i> HTML/CSS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="container mx-auto max-w-7xl mt-6">
+            <div class="bento-card flex flex-col md:flex-row items-center justify-between gap-6">
+                 <div class="card-glow"></div>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-violet-500/20 flex items-center justify-center border border-violet-500/30">
+                        <i class="fas fa-robot text-2xl text-violet-300"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-white">MayaGPT Assistant</h3>
+                        <p class="text-slate-400 text-sm">Ask my AI assistant about my portfolio.</p>
+                    </div>
+                </div>
+                <button id="maya-toggle" class="px-6 py-3 w-full md:w-auto rounded-lg text-white font-semibold bg-slate-800 hover:bg-slate-700 transition-colors border border-slate-700">
+                    Open Chat
+                </button>
+            </div>
+        </section>
+        
+    </main>
+    
+    <footer class="w-full py-20 text-center text-slate-500 text-sm">
+        © 2025 Mayantha Udayanga. Built with passion and code.
     </footer>
 
-    <script>
-document.addEventListener('DOMContentLoaded', () => {
-    // Theme toggle logic with icon
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const body = document.body;
+    <div id="social-dock" class="fixed z-30 flex items-center gap-3">
+        <a href="https://www.linkedin.com/in/mayanthaudayanga/" target="_blank" class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-sky-400"><i class="fab fa-linkedin-in text-xl"></i></a>
+        <a href="https://github.com/Mayanthaz" target="_blank" class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-white"><i class="fab fa-github text-xl"></i></a>
+        <a href="mailto:Bimsaramaya1@gmail.com" class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-violet-400"><i class="fas fa-envelope text-xl"></i></a>
+        <a href="https://wa.me/94783686802" target="_blank" class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-green-400"><i class="fab fa-whatsapp text-xl"></i></a>
+    </div>
 
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('light-mode');
-        if (body.classList.contains('light-mode')) {
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
-        } else {
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-        }
-    });
-});
-    </script>
-
-    <!-- Firebase realtime presence script: paste before </body> -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-<script>
-    // Initialize Firebase with your config
-    const firebaseConfig = {
-        apiKey: "AIzaSyC9HHJYm_w-wdiBMybxwPuuJGybz0SzR1s",
-        authDomain: "mayanthaportfolio.firebaseapp.com",
-        databaseURL: "https://mayanthaportfolio-default-rtdb.firebaseio.com/", // Updated URL
-        projectId: "mayanthaportfolio",
-        storageBucket: "mayanthaportfolio.appspot.com",
-        messagingSenderId: "1038679219568",
-        appId: "1:1038679219568:web:9cfe6968fdae2910f383b5"
-    };
-
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-
-    // Generate a unique ID for this session
-    const sessionId = Math.random().toString(36).substring(2);
-
-    // Handle presence
-    const presenceRef = db.ref('presence');
-    const myConnectionRef = presenceRef.child(sessionId);
-
-    // Monitor connection state with error handling
-    db.ref('.info/connected').on('value', (snapshot) => {
-        if (snapshot.val()) {
-            // When user connects
-            myConnectionRef.set({
-                timestamp: firebase.database.ServerValue.TIMESTAMP,
-                online: true
-            }).catch(error => console.error('Error setting presence:', error));
-            
-            // Remove when user disconnects
-            myConnectionRef.onDisconnect().remove()
-                .catch(error => console.error('Error setting disconnect:', error));
-        }
-    }, (error) => console.error('Error monitoring connection:', error));
-
-    // Update viewer count in realtime with error handling
-    presenceRef.on('value', (snapshot) => {
-        try {
-            const viewers = snapshot.numChildren();
-            const counterElement = document.getElementById('visitor-count');
-            if (counterElement) {
-                counterElement.textContent = viewers;
-                
-                // Add animation effect when count changes
-                counterElement.classList.add('scale-110');
-                setTimeout(() => {
-                    counterElement.classList.remove('scale-110');
-                }, 200);
-            }
-        } catch (error) {
-            console.error('Error updating viewer count:', error);
-        }
-    }, (error) => console.error('Error monitoring presence:', error));
-</script>
-<script>
-// Replace the existing typewriter script with this one
-document.addEventListener('DOMContentLoaded', function() {
-    const text = "Mayantha Udayanga";
-    const typewriter = document.querySelector('.typewriter');
-    let i = 0;
-    
-    function type() {
-        if (i < text.length) {
-            typewriter.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, 100);
-        } else {
-            setTimeout(erase, 2000); // Wait 2 seconds before erasing
-        }
-    }
-    
-    function erase() {
-        if (typewriter.textContent.length > 0) {
-            typewriter.textContent = typewriter.textContent.slice(0, -1);
-            setTimeout(erase, 50);
-        } else {
-            i = 0;
-            setTimeout(type, 500); // Wait 0.5 seconds before typing again
-        }
-    }
-    
-    type(); // Start the animation
-});
-</script>
-
-<!-- Add to your existing style section -->
-<style>
-@media (min-width: 768px) {
-    .container {
-        margin-top: -2rem; /* Pulls content up slightly on desktop */
-    }
-    
-    .hero-content {
-        padding-top: 0;
-    }
-}
-
-/* Add to your existing style section */
-#chat-messages {
-    scrollbar-width: thin;
-    scrollbar-color: #6b21a8 #1f2937;
-}
-
-#chat-messages::-webkit-scrollbar {
-    width: 8px;
-}
-
-#chat-messages::-webkit-scrollbar-track {
-    background: #1f2937;
-}
-
-#chat-messages::-webkit-scrollbar-thumb {
-    background-color: #6b21a8;
-    border-radius: 4px;
-}
-
-.message {
-    max-width: 80%;
-    padding: 0.5rem 1rem;
-    margin: 0.5rem 0;
-    border-radius: 1rem;
-}
-
-.user-message {
-    background-color: #6b21a8;
-    color: white;
-    margin-left: auto;
-    border-radius: 1rem 1rem 0 1rem;
-}
-
-.bot-message {
-    background-color: #1f2937;
-    color: white;
-    margin-right: auto;
-    border-radius: 1rem 1rem 1rem 0;
-}
-
-#chat-toggle {
-    transform-origin: bottom right;
-    animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-/* Add to your existing style section */
-.animate-fade-in {
-    animation: fadeIn 0.3s ease-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.scrollbar-thin {
-    scrollbar-width: thin;
-}
-
-.scrollbar-thumb-purple-600::-webkit-scrollbar {
-    width: 6px;
-}
-
-.scrollbar-thumb-purple-600::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.scrollbar-thumb-purple-600::-webkit-scrollbar-thumb {
-    background-color: rgba(147, 51, 234, 0.5);
-    border-radius: 3px;
-}
-</style>
-
-<!-- Add this HTML just before the closing </body> tag -->
-<div id="chat-widget" class="fixed bottom-4 right-4 z-50">
-    <!-- Chat Button -->
-    <button id="chat-toggle" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-full p-4 shadow-lg flex items-center justify-center transition-all duration-300 gap-2">
-        <i class="fas fa-robot text-xl"></i>
-        <span class="text-sm font-medium">MayaGPT</span>
-    </button>
-
-    <!-- Chat Window -->
-    <div id="chat-window" class="hidden fixed bottom-20 right-4 w-80 md:w-96 bg-gray-900/95 backdrop-blur-lg rounded-xl shadow-2xl border border-purple-500/30">
-        <!-- Chat Header -->
-        <div class="p-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-t-xl flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-white/10 backdrop-blur-lg flex items-center justify-center">
-                    <i class="fas fa-robot text-white text-xl"></i>
-                </div>
-                <div>
-                    <span class="text-white font-semibold block">MayaGPT</span>
-                    <span class="text-xs text-white/70">Portfolio Assistant</span>
-                </div>
+    <div id="command-palette" class="fixed inset-0 z-50 hidden items-start justify-center bg-slate-950/50 pt-24">
+        <div class="w-full max-w-lg transform rounded-xl bg-slate-800/80 border border-slate-700 shadow-2xl">
+            <div class="p-2">
+                <input type="text" id="command-input" placeholder="Search commands..." class="w-full bg-transparent p-2 text-lg text-white outline-none">
             </div>
-            <button id="close-chat" class="text-white/70 hover:text-white transition-colors">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-
-        <!-- Chat Messages -->
-        <div id="chat-messages" class="p-4 h-96 overflow-y-auto space-y-4 scrollbar-thin scrollbar-thumb-purple-600">
-            <!-- Welcome Message -->
-            <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full bg-purple-600/20 flex items-center justify-center">
-                    <i class="fas fa-robot text-purple-400 text-sm"></i>
-                </div>
-                <div class="flex-1 glass-card p-3 rounded-xl rounded-tl-none">
-                    <p class="text-sm text-gray-200">
-                        Hi! I'm MayaGPT, Mayantha's portfolio assistant. I can help you with information about his education, skills, certifications, and background. What would you like to know?
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Chat Input -->
-        <div class="p-4 border-t border-purple-500/20">
-            <form id="chat-form" class="flex gap-2">
-                <input type="text" id="chat-input" 
-                    class="flex-grow p-3 rounded-xl bg-gray-800/50 text-white border border-purple-500/30 focus:border-purple-500 focus:outline-none text-sm"
-                    placeholder="Ask about Mayantha's portfolio..."
-                    autocomplete="off">
-                <button type="submit" 
-                    class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-xl px-4 flex items-center justify-center transition-all duration-300">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </form>
+            <ul id="command-results" class="max-h-80 overflow-y-auto p-2">
+                </ul>
         </div>
     </div>
-</div>
 
-<script>
-    // Chat widget toggle
-    document.getElementById('chat-toggle').addEventListener('click', function() {
-        var chatWindow = document.getElementById('chat-window');
-        chatWindow.classList.toggle('hidden');
-        chatWindow.classList.toggle('flex');
-        
-        // Focus on input field when chat opens
-        if (!chatWindow.classList.contains('hidden')) {
-            document.getElementById('chat-input').focus();
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- Custom Cursor Logic ---
+        const cursorDot = document.querySelector(".cursor-dot");
+        const cursorOutline = document.querySelector(".cursor-outline");
+        window.addEventListener("mousemove", e => {
+            cursorDot.style.left = `${e.clientX}px`;
+            cursorDot.style.top = `${e.clientY}px`;
+            cursorOutline.style.left = `${e.clientX}px`;
+            cursorOutline.style.top = `${e.clientY}px`;
+        });
+        document.querySelectorAll('a, button, input, textarea, .bento-card').forEach(el => {
+            el.addEventListener('mouseenter', () => document.documentElement.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => document.documentElement.classList.remove('cursor-hover'));
+        });
+        document.querySelectorAll('input[type="text"], textarea').forEach(el => {
+             el.addEventListener('mouseenter', () => document.documentElement.classList.add('cursor-text'));
+            el.addEventListener('mouseleave', () => document.documentElement.classList.remove('cursor-text'));
+        });
+
+        // --- Bento Card Glow Effect ---
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--x', `${e.clientX - rect.left}px`);
+                card.style.setProperty('--y', `${e.clientY - rect.top}px`);
+            });
+        });
+
+        // --- Typewriter Effect ---
+        const typewriterEl = document.querySelector('.typewriter');
+        if (typewriterEl) {
+            const text = typewriterEl.textContent;
+            typewriterEl.textContent = '';
+            let i = 0;
+            const type = () => {
+                if (i < text.length) {
+                    typewriterEl.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, 120);
+                }
+            };
+            type();
         }
-    });
 
-    // Close chat window
-    document.getElementById('close-chat').addEventListener('click', function() {
-        document.getElementById('chat-window').classList.add('hidden');
-    });
+        // --- Command Palette Logic ---
+        const palette = document.getElementById('command-palette');
+        const input = document.getElementById('command-input');
+        const resultsList = document.getElementById('command-results');
+        const commands = [
+            { name: 'Go to Home', action: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
+            { name: 'View Projects', action: () => document.getElementById('grid').scrollIntoView() },
+            { name: 'Download CV', action: () => document.querySelector('a[download]').click() },
+            { name: 'Open GitHub', action: () => window.open('https://github.com/Mayanthaz', '_blank') },
+            { name: 'Open LinkedIn', action: () => window.open('https://www.linkedin.com/in/mayanthaudayanga/', '_blank') },
+            { name: 'Send Email', action: () => window.location.href = 'mailto:Bimsaramaya1@gmail.com' },
+        ];
 
-    // Chat form submission
-    document.getElementById('chat-form').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const input = document.getElementById('chat-input');
-        const message = input.value.trim();
-        
-        if (message) {
-            // Add user message
-            addMessage('user', message);
-            input.value = '';
-            input.setAttribute('disabled', 'disabled');
+        const renderCommands = (filter = '') => {
+            resultsList.innerHTML = '';
+            const filtered = commands.filter(c => c.name.toLowerCase().includes(filter.toLowerCase()));
+            filtered.forEach(cmd => {
+                const li = document.createElement('li');
+                li.className = 'p-2 rounded-md text-slate-300 hover:bg-slate-700/80 cursor-pointer';
+                li.textContent = cmd.name;
+                li.onclick = () => {
+                    cmd.action();
+                    togglePalette(false);
+                };
+                resultsList.appendChild(li);
+            });
+        };
 
-            // Show typing indicator
-            const typingIndicator = addTypingIndicator();
-            
-            try {
-                const response = await fetch('https://api.anthropic.com/v1/messages', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-api-key': ANTHROPIC_API_KEY,
-                        'anthropic-version': '2024-02-29'
-                    },
-                    body: JSON.stringify({
-                        model: 'claude-3-sonnet-20240229',
-                        messages: [{
-                            role: 'user',
-                            content: `${PORTFOLIO_CONTEXT}\n\nUser: ${message}`
-                        }]
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                
-                if (data.content && data.content[0] && data.content[0].text) {
-                    typingIndicator.remove();
-                    addMessage('bot', data.content[0].text);
-                } else {
-                    throw new Error('Invalid response format');
-                }
-                
-            } catch (error) {
-                console.error('API Error:', error);
-                typingIndicator.remove();
-                addMessage('bot', 'I apologize, but I encountered an error. Please try again in a moment.');
+        const togglePalette = (show) => {
+            if (show) {
+                palette.classList.remove('hidden');
+                palette.classList.add('flex');
+                input.focus();
+                renderCommands();
+            } else {
+                palette.classList.add('hidden');
+                palette.classList.remove('flex');
+                input.value = '';
             }
-
-            input.removeAttribute('disabled');
-            input.focus();
-        }
+        };
+        
+        document.getElementById('cmd-button').addEventListener('click', () => togglePalette(true));
+        input.addEventListener('input', () => renderCommands(input.value));
+        window.addEventListener('keydown', e => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                togglePalette(!palette.classList.contains('flex'));
+            }
+            if (e.key === 'Escape' && palette.classList.contains('flex')) {
+                togglePalette(false);
+            }
+        });
+        palette.addEventListener('click', e => {
+            if (e.target === palette) togglePalette(false);
+        });
+        
+        // --- TODO: Add MayaGPT chat modal logic here when ready ---
+        document.getElementById('maya-toggle').addEventListener('click', () => {
+            alert("MayaGPT chat feature is under development!");
+        });
     });
-
-    function addMessage(sender, text) {
-        var messagesDiv = document.getElementById('chat-messages');
-        var messageElement = document.createElement('div');
-        messageElement.classList.add('flex', 'items-start', 'gap-2');
-        
-        if (sender === "user") {
-            messageElement.classList.add('justify-end');
-        }
-        
-        messageElement.innerHTML = `
-            <div class="w-10 h-10 rounded-full flex items-center justify-center ${sender === 'user' ? 'bg-purple-600' : 'bg-gray-800'}">
-                ${sender === 'user' ? '<i class="fas fa-user text-white"></i>' : '<i class="fas fa-robot text-purple-600"></i>'}
-            </div>
-            <div class="max-w-xs rounded-lg p-3 ${sender === 'user' ? 'bg-purple-600 text-white' : 'bg-gray-800 text-gray-300'}">
-                ${text}
-            </div>
-        `;
-        
-        messagesDiv.appendChild(messageElement);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-
-    // Update the typingIndicator function for better visual feedback
-    function addTypingIndicator() {
-        const messagesDiv = document.getElementById('chat-messages');
-        const typingElement = document.createElement('div');
-        typingElement.classList.add('flex', 'items-start', 'gap-3', 'animate-pulse');
-        
-        typingElement.innerHTML = `
-            <div class="w-8 h-8 rounded-full bg-purple-600/20 flex items-center justify-center">
-                <i class="fas fa-robot text-purple-400 text-sm"></i>
-            </div>
-            <div class="flex-1 glass-card p-3 rounded-xl rounded-tl-none">
-                <div class="flex gap-2">
-                    <div class="w-2 h-2 bg-purple-400 rounded-full animate-bounce"></div>
-                    <div class="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
-                    <div class="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
-                </div>
-            </div>
-        `;
-        
-        messagesDiv.appendChild(typingElement);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        return typingElement;
-    }
-</script>
+    </script>
 </body>
-
 </html>
-
