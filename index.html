@@ -13,43 +13,289 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
+    <script type='text/javascript' src='//pl27724374.revenuecpmgate.com/19/02/71/1902717d3558e90f65e9cbc475ebe628.js'></script>
+    
     <style>
-        /* --- Your full CSS styles remain unchanged --- */
         :root {
-            --bg-color: #020617;
-            --card-color: #0f172a;
-            --border-color: rgba(56, 189, 248, 0.15);
-            --text-color: #cbd5e1;
-            --accent-primary: #8b5cf6;
-            --accent-secondary: #38bdf8;
+            --bg-color: #020617; /* Tailwind slate-950 */
+            --card-color: #0f172a; /* Tailwind slate-900 */
+            --border-color: rgba(56, 189, 248, 0.15); /* Sky-400 with opacity */
+            --text-color: #cbd5e1; /* Tailwind slate-300 */
+            --accent-primary: #8b5cf6; /* Violet-500 */
+            --accent-secondary: #38bdf8; /* Sky-400 */
             --font-sans: 'Inter', sans-serif;
             --font-mono: 'Fira Code', monospace;
         }
-        html { cursor: none; }
+
+        html {
+            cursor: none;
+        }
+
         body {
             font-family: var(--font-sans);
             background-color: var(--bg-color);
             color: var(--text-color);
+            /* Static dot pattern is now a fallback, animation is primary */
             background-image: radial-gradient(#1e293b 1px, transparent 0);
             background-size: 25px 25px;
             overflow-x: hidden;
             scroll-padding-top: 100px;
         }
-        h1, h2, h3, h4, h5, h6 { font-family: var(--font-mono); }
-        /* (CSS content continues unchanged — skipped for brevity) */
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-mono);
+        }
+
+        /* --- Animated Background --- */
+        #background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1; /* This is crucial to keep it behind your content */
+        }
+
+        #background-animation span {
+            position: absolute;
+            bottom: -50px; /* Start from below the screen */
+            border-radius: 50%;
+            animation: float 25s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg); /* Move up and off the screen */
+                opacity: 0;
+            }
+        }
+
+        /* --- Individual Orb Styles (for variety) --- */
+        #background-animation span:nth-child(1) {
+            left: 10%;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-primary);
+            animation-duration: 35s;
+            animation-delay: 2s;
+        }
+        #background-animation span:nth-child(2) {
+            left: 20%;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-secondary);
+            animation-duration: 20s;
+            animation-delay: 0s;
+        }
+        #background-animation span:nth-child(3) {
+            left: 30%;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-primary);
+            animation-duration: 45s;
+            animation-delay: 5s;
+        }
+        #background-animation span:nth-child(4) {
+            left: 40%;
+            width: 30px;
+            height: 30px;
+            background: var(--accent-secondary);
+            animation-duration: 30s;
+            animation-delay: 1s;
+        }
+        #background-animation span:nth-child(5) {
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            background: var(--accent-primary);
+            animation-duration: 22s;
+            animation-delay: 6s;
+        }
+        #background-animation span:nth-child(6) {
+            left: 60%;
+            width: 45px;
+            height: 45px;
+            background: var(--accent-secondary);
+            animation-duration: 40s;
+            animation-delay: 3s;
+        }
+        #background-animation span:nth-child(7) {
+            left: 70%;
+            width: 35px;
+            height: 35px;
+            background: var(--accent-primary);
+            animation-duration: 28s;
+            animation-delay: 8s;
+        }
+        #background-animation span:nth-child(8) {
+            left: 80%;
+            width: 15px;
+            height: 15px;
+            background: var(--accent-secondary);
+            animation-duration: 18s;
+            animation-delay: 4s;
+        }
+        #background-animation span:nth-child(9) {
+            left: 90%;
+            width: 55px;
+            height: 55px;
+            background: var(--accent-primary);
+            animation-duration: 50s;
+            animation-delay: 10s;
+        }
+        #background-animation span:nth-child(10) {
+            left: 5%;
+            width: 28px;
+            height: 28px;
+            background: var(--accent-secondary);
+            animation-duration: 33s;
+            animation-delay: 7s;
+        }
+        #background-animation span:nth-child(11) {
+            left: 85%;
+            width: 22px;
+            height: 22px;
+            background: var(--accent-primary);
+            animation-duration: 26s;
+            animation-delay: 9s;
+        }
+        #background-animation span:nth-child(12) {
+            left: 45%;
+            width: 38px;
+            height: 38px;
+            background: var(--accent-secondary);
+            animation-duration: 38s;
+            animation-delay: 11s;
+        }
+        
+        /* Custom Cursor */
+        .cursor-dot {
+            pointer-events: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-secondary);
+            transition: transform 0.15s ease-out;
+        }
+        .cursor-outline {
+            pointer-events: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--accent-secondary);
+            opacity: 0.5;
+            transition: transform 0.2s ease-out, width 0.3s ease, height 0.3s ease;
+        }
+        body:hover .cursor-dot, body:hover .cursor-outline { opacity: 1; }
+        a:hover ~ .cursor-outline, button:hover ~ .cursor-outline, .bento-card:hover ~ .cursor-outline {
+            width: 50px;
+            height: 50px;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        html.cursor-text .cursor-dot {
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+        html.cursor-text .cursor-outline {
+            width: 5px;
+            height: 25px;
+            border-radius: 5px;
+            background-color: var(--accent-secondary);
+            border-color: transparent;
+        }
+
+
+        /* Bento Grid Card Style */
+        .bento-card {
+            background-color: var(--card-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            background-color: #1e293b; /* slate-800 */
+        }
+        .bento-card .card-glow {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at var(--x) var(--y), var(--accent-secondary) 0%, transparent 20%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .bento-card:hover .card-glow {
+            opacity: 0.1;
+        }
+
+        /* Typewriter */
+        .typewriter {
+            border-right: 2px solid var(--accent-secondary);
+            animation: blink-caret .75s step-end infinite;
+        }
+        @keyframes blink-caret {
+            50% { border-color: transparent; }
+        }
+
+        /* Command Palette */
+        #command-palette {
+            backdrop-filter: blur(8px);
+        }
+
+        /* Social Dock */
+        #social-dock {
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.5rem;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+        }
+        #social-dock a {
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        #social-dock:hover a { transform: translateY(-4px); }
+        #social-dock a:hover { transform: translateY(-12px) scale(1.2); }
+        #social-dock a:hover + a, #social-dock a:has(+ a:hover) { transform: translateY(-8px) scale(1.1); }
     </style>
 </head>
 <body class="text-slate-300">
     <div id="background-animation">
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
 
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
-    <!-- HEADER -->
     <header class="fixed top-0 left-0 right-0 z-40">
         <nav class="container mx-auto max-w-7xl px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-xl font-bold font-mono text-white">MAYANTHA /&gt;</a>
@@ -60,18 +306,125 @@
         </nav>
     </header>
 
-    <!-- MAIN -->
     <main class="relative z-10 pt-24 px-6">
-        <!-- (All your portfolio sections remain exactly the same) -->
-        <!-- HOME, GRID, PROJECTS, etc. -->
+        <section id="home" class="container mx-auto max-w-5xl py-16 md:py-24 text-center">
+            <div class="w-24 h-24 mx-auto mb-6 rounded-full p-1.5 bg-gradient-to-br from-violet-500 to-sky-400">
+                <img src="https://i.ibb.co/9fbYLJw/your-image.jpg" alt="Mayantha Udayanga" class="w-full h-full object-cover rounded-full border-2 border-slate-950">
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white">
+                <span class="typewriter">Mayantha Udayanga</span>
+            </h1>
+            <p class="text-lg md:text-xl mt-4 text-sky-300">Software Engineer | Cloud Enthusiast | AWS</p>
+            <p class="max-w-2xl mx-auto mt-6 text-slate-400">
+                A passionate software engineering student dedicated to building robust, scalable applications and diving deep into the world of cloud architecture.
+            </p>
+            <div class="mt-8 flex justify-center gap-4">
+                <a href="https://github.com/Mayanthaz" target="_blank" class="px-6 py-3 rounded-lg text-white font-semibold bg-slate-800 hover:bg-slate-700 transition-colors border border-slate-700">
+                    <i class="fab fa-github mr-2"></i> GitHub Profile
+                </a>
+                 <a href="Mayantha_Udayanga_CV.pdf" download class="px-6 py-3 rounded-lg text-white font-semibold bg-gradient-to-r from-violet-600 to-sky-600 hover:opacity-90 transition-opacity">
+                    <i class="fas fa-download mr-2"></i> Download CV
+                </a>
+            </div>
+        </section>
+
+        <section id="grid" class="container mx-auto max-w-7xl mt-12">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="bento-card lg:col-span-2">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-graduation-cap text-2xl text-violet-400 mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Education</h3>
+                    <p class="text-slate-400 mb-4">BSc (Hons) Software Engineering at NIBM (2024-2025).</p>
+                    <div class="flex flex-wrap gap-2 text-sm">
+                        <span class="px-3 py-1 bg-slate-800 rounded-full">Cloud Computing</span>
+                        <span class="px-3 py-1 bg-slate-800 rounded-full">Data Structures</span>
+                        <span class="px-3 py-1 bg-slate-800 rounded-full">Web Development</span>
+                    </div>
+                </div>
+                
+                <div class="bento-card">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-certificate text-2xl text-sky-400 mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Certifications</h3>
+                    <ul class="space-y-2 text-slate-400">
+                        <li class="flex items-center gap-2"><i class="fab fa-google text-yellow-400"></i> Google Cloud</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-shield-alt text-blue-400"></i> Cisco Cybersecurity</li>
+                    </ul>
+                </div>
+                
+                <div class="bento-card lg:col-span-3">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-code text-2xl text-violet-400 mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Featured Projects</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div class="p-4 rounded-lg bg-slate-800/50 border border-slate-700">
+                            <h4 class="font-bold text-white">Portfolio Website V3</h4>
+                            <p class="text-sm text-slate-400 mt-1">This website, built with modern UI principles and interactive features.</p>
+                            <div class="flex flex-wrap gap-2 text-xs mt-3">
+                                <span class="px-2 py-1 bg-sky-900/50 text-sky-300 rounded">HTML</span>
+                                <span class="px-2 py-1 bg-sky-900/50 text-sky-300 rounded">TailwindCSS</span>
+                                <span class="px-2 py-1 bg-sky-900/50 text-sky-300 rounded">JavaScript</span>
+                            </div>
+                            <div class="mt-4 flex gap-4">
+                                <a href="https://github.com/Mayanthaz/Portfolio" target="_blank" class="text-sm text-slate-300 hover:text-white"><i class="fab fa-github mr-1"></i> Code</a>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-lg bg-slate-800/50 border border-slate-700">
+                            <h4 class="font-bold text-white">Cloud File Storage Service</h4>
+                            <p class="text-sm text-slate-400 mt-1">A scalable file storage solution using AWS S3 and Lambda functions.</p>
+                            <div class="flex flex-wrap gap-2 text-xs mt-3">
+                                <span class="px-2 py-1 bg-yellow-900/50 text-yellow-300 rounded">AWS S3</span>
+                                <span class="px-2 py-1 bg-yellow-900/50 text-yellow-300 rounded">Lambda</span>
+                                <span class="px-2 py-1 bg-green-900/50 text-green-300 rounded">Node.js</span>
+                            </div>
+                             <div class="mt-4 flex gap-4">
+                                <a href="#" class="text-sm text-slate-300 hover:text-white"><i class="fas fa-globe mr-1"></i> Live Demo</a>
+                                <a href="#" class="text-sm text-slate-300 hover:text-white"><i class="fab fa-github mr-1"></i> Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card lg:col-span-3">
+                    <div class="card-glow"></div>
+                    <i class="fas fa-layer-group text-2xl text-sky-400 mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Core Technologies</h3>
+                    <div class="flex flex-wrap gap-3 text-sm font-medium mt-4">
+                        <span class="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-full"><i class="fab fa-aws text-yellow-400"></i> AWS Cloud</span>
+                        <span class="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-full"><i class="fab fa-java text-red-400"></i> Java OOP</span>
+                        <span class="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-full"><i class="fas fa-database text-sky-400"></i> MySQL</span>
+                        <span class="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-full"><i class="fab fa-linux text-white"></i> Linux</span>
+                         <span class="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-full"><i class="fab fa-node-js text-green-400"></i> Node.js</span>
+                        <span class="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-full"><i class="fab fa-html5 text-orange-400"></i> HTML/CSS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="container mx-auto max-w-7xl mt-6">
+            <div class="bento-card flex flex-col md:flex-row items-center justify-between gap-6">
+                 <div class="card-glow"></div>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-violet-500/20 flex items-center justify-center border border-violet-500/30">
+                        <i class="fas fa-robot text-2xl text-violet-300"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-white">MayaGPT Assistant</h3>
+                        <p class="text-slate-400 text-sm">Ask my AI assistant about my portfolio.</p>
+                    </div>
+                </div>
+                <button id="maya-toggle" class="px-6 py-3 w-full md:w-auto rounded-lg text-white font-semibold bg-slate-800 hover:bg-slate-700 transition-colors border border-slate-700">
+                    Open Chat
+                </button>
+            </div>
+        </section>
+        
     </main>
     
-    <!-- FOOTER -->
     <footer class="w-full py-20 text-center text-slate-500 text-sm">
         © 2025 Mayantha Udayanga. Built with passion and code.
     </footer>
 
-    <!-- SOCIAL DOCK -->
     <div id="social-dock" class="fixed z-30 flex items-center gap-3">
         <a href="https://www.linkedin.com/in/mayanthaudayanga/" target="_blank" class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-sky-400"><i class="fab fa-linkedin-in text-xl"></i></a>
         <a href="https://github.com/Mayanthaz" target="_blank" class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-white"><i class="fab fa-github text-xl"></i></a>
@@ -79,19 +432,20 @@
         <a href="https://wa.me/94783686802" target="_blank" class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-green-400"><i class="fab fa-whatsapp text-xl"></i></a>
     </div>
 
-    <!-- COMMAND PALETTE -->
     <div id="command-palette" class="fixed inset-0 z-50 hidden items-start justify-center bg-slate-950/50 pt-24">
         <div class="w-full max-w-lg transform rounded-xl bg-slate-800/80 border border-slate-700 shadow-2xl">
             <div class="p-2">
                 <input type="text" id="command-input" placeholder="Search commands..." class="w-full bg-transparent p-2 text-lg text-white outline-none">
             </div>
-            <ul id="command-results" class="max-h-80 overflow-y-auto p-2"></ul>
+            <ul id="command-results" class="max-h-80 overflow-y-auto p-2">
+                </ul>
         </div>
     </div>
 
-    <!-- JS -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
+
+        // --- Custom Cursor Logic ---
         const cursorDot = document.querySelector(".cursor-dot");
         const cursorOutline = document.querySelector(".cursor-outline");
         window.addEventListener("mousemove", e => {
@@ -108,6 +462,8 @@
              el.addEventListener('mouseenter', () => document.documentElement.classList.add('cursor-text'));
             el.addEventListener('mouseleave', () => document.documentElement.classList.remove('cursor-text'));
         });
+
+        // --- Bento Card Glow Effect ---
         document.querySelectorAll('.bento-card').forEach(card => {
             card.addEventListener('mousemove', e => {
                 const rect = card.getBoundingClientRect();
@@ -115,6 +471,8 @@
                 card.style.setProperty('--y', `${e.clientY - rect.top}px`);
             });
         });
+
+        // --- Typewriter Effect ---
         const typewriterEl = document.querySelector('.typewriter');
         if (typewriterEl) {
             const text = typewriterEl.textContent;
@@ -129,6 +487,8 @@
             };
             type();
         }
+
+        // --- Command Palette Logic ---
         const palette = document.getElementById('command-palette');
         const input = document.getElementById('command-input');
         const resultsList = document.getElementById('command-results');
@@ -140,6 +500,7 @@
             { name: 'Open LinkedIn', action: () => window.open('https://www.linkedin.com/in/mayanthaudayanga/', '_blank') },
             { name: 'Send Email', action: () => window.location.href = 'mailto:Bimsaramaya1@gmail.com' },
         ];
+
         const renderCommands = (filter = '') => {
             resultsList.innerHTML = '';
             const filtered = commands.filter(c => c.name.toLowerCase().includes(filter.toLowerCase()));
@@ -154,6 +515,7 @@
                 resultsList.appendChild(li);
             });
         };
+
         const togglePalette = (show) => {
             if (show) {
                 palette.classList.remove('hidden');
@@ -166,6 +528,7 @@
                 input.value = '';
             }
         };
+        
         document.getElementById('cmd-button').addEventListener('click', () => togglePalette(true));
         input.addEventListener('input', () => renderCommands(input.value));
         window.addEventListener('keydown', e => {
@@ -180,6 +543,8 @@
         palette.addEventListener('click', e => {
             if (e.target === palette) togglePalette(false);
         });
+        
+        // --- TODO: Add MayaGPT chat modal logic here when ready ---
         document.getElementById('maya-toggle').addEventListener('click', () => {
             alert("MayaGPT chat feature is under development!");
         });
